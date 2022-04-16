@@ -1,12 +1,12 @@
-package com.sopt.androidsturdy.presentation.home.screens
+package com.sopt.androidstudy.presentation.home.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import com.sopt.androidsturdy.R
-import com.sopt.androidsturdy.databinding.ActivityMainBinding
-import com.sopt.androidsturdy.presentation.home.viewmodels.MyViewModel
+import com.sopt.androidstudy.R
+import com.sopt.androidstudy.databinding.ActivityMainBinding
+import com.sopt.androidstudy.presentation.home.viewmodels.MyViewModel
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding

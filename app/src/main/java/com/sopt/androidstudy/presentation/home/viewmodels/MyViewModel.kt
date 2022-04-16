@@ -1,4 +1,4 @@
-package com.sopt.androidsturdy.presentation.home.viewmodels
+package com.sopt.androidstudy.presentation.home.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

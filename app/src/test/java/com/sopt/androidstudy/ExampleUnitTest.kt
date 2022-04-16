@@ -1,4 +1,4 @@
-package com.sopt.androidsturdy
+package com.sopt.androidstudy
 
 import org.junit.Test
 
