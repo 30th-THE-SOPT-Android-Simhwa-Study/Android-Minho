@@ -13,7 +13,7 @@ class LoginViewModel : ViewModel() {
     private val userEmail = MutableLiveData<String>()
     private val userPassword = MutableLiveData<String>()
     private val isEnabledButton = MediatorLiveData<Boolean>()
-
+    private val hi:String = "asdasd"
     init {
         initEnabledButton()
     }
