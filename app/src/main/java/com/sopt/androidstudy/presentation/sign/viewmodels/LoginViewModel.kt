@@ -16,6 +16,7 @@ class LoginViewModel : ViewModel() {
     private val hi:String = "asdasd"
     init {
         initEnabledButton()
+
     }
 
     private fun initEnabledButton() {
