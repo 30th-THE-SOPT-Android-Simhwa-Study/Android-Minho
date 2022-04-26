@@ -12,7 +12,7 @@ import com.sopt.androidstudy.presentation.home.viewmodels.MyViewModel
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    private val _viewModel: MyViewModel by viewModels()
+    private val viewModel: MyViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //binding = ActivityMainBinding.inflate(layoutInflater)
