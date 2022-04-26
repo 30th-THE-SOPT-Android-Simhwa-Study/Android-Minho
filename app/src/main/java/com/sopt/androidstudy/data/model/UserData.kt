@@ -3,7 +3,7 @@ package com.sopt.androidstudy.data.model
 import android.os.Parcel
 import android.os.Parcelable
 
-data class UserData(val uid: String?, val password:String?):Parcelable {
+data class UserData(val uid: String?, val password: String?): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString()
