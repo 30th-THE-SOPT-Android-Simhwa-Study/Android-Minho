@@ -15,31 +15,53 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginHorizontal="10dp"
         android:background="@color/white">
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd_left"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/app_base_margin" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gd_right"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/app_base_margin" />
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Sopt"
-            android:textSize="32sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="@dimen/app_base_margin"
+            android:fontFamily="@font/montserrat_b"
+            android:text="@string/app_name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/logo_txt_size"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@id/gd_left"
+
+            />
 
         <EditText
             android:id="@+id/email_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/app_base_margin"
             android:background="@drawable/shape_bordor_radius_5"
             android:backgroundTint="@color/gray_100"
-            android:hint="이메일"
+            android:fontFamily="@font/suit_r"
+            android:textSize="@dimen/edit_txt_size"
+            android:hint="@string/hint_email"
             android:maxLines="1"
+            android:textColorHint="@color/hint_color"
             android:onTextChanged="@{loginviewmodel::onEmailTextChanged}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:paddingHorizontal="@dimen/layout_space"
+            android:textColor="@color/edit_color"
+            android:paddingVertical="@dimen/layout_space"
+            app:layout_constraintEnd_toEndOf="@id/gd_right"
+
+            app:layout_constraintStart_toStartOf="@id/gd_left"
             app:layout_constraintTop_toBottomOf="@id/title" />
 
         <TextView
@@ -47,12 +69,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/suit_r"
             android:maxLines="1"
-            android:text="이메일을 정확하게 입력해주세요."
-            android:textColor="@color/gray_200"
-            android:textSize="14sp"
-            android:visibility="@{loginviewmodel.emailValid==true ? View.INVISIBLE : View.VISIBLE}"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/tv_email"
+            android:textColor="@color/hint_color"
+            android:textSize="@dimen/edit_hint_size"
+            visible="@{loginviewmodel.emailValid}"
+            app:layout_constraintEnd_toEndOf="@id/gd_right"
+            app:layout_constraintStart_toStartOf="@id/gd_left"
             app:layout_constraintTop_toBottomOf="@id/email_input" />
 
         <EditText
@@ -62,12 +86,19 @@
             android:layout_marginTop="33dp"
             android:background="@drawable/shape_bordor_radius_5"
             android:backgroundTint="@color/gray_100"
-            android:hint="패스워드"
+            android:fontFamily="@font/suit_r"
+            android:hint="@string/hint_password"
             android:inputType="textPassword"
+            android:textColorHint="@color/hint_color"
+            android:textSize="@dimen/edit_txt_size"
+            android:textColor="@color/edit_color"
             android:maxLines="1"
             android:onTextChanged="@{loginviewmodel::onPasswordTextChanged}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:paddingHorizontal="@dimen/layout_space"
+            android:paddingVertical="@dimen/layout_space"
+            app:layout_constraintEnd_toEndOf="@id/gd_right"
+            app:layout_constraintStart_toStartOf="@id/gd_left"
+
             app:layout_constraintTop_toBottomOf="@id/email_detail" />
 
         <TextView
@@ -75,26 +106,32 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:fontFamily="@font/suit_r"
             android:maxLines="1"
-            android:text="8자리 이상의 영문자, 숫자, 특수 문자 조합으로 입력해주세요."
-            android:textColor="@color/gray_200"
-            android:textSize="14sp"
-            android:visibility="@{loginviewmodel.passwordValid == true ? View.INVISIBLE:View.VISIBLE}"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/tv_password"
+            android:textColor="@color/hint_color"
+            android:textSize="@dimen/edit_hint_size"
+            visible="@{loginviewmodel.passwordValid}"
+            app:layout_constraintEnd_toEndOf="@id/gd_right"
+            app:layout_constraintStart_toStartOf="@id/gd_left"
+
             app:layout_constraintTop_toBottomOf="@id/password_input" />
 
         <Button
             android:id="@+id/sign_in"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:text="로그인"
+            android:layout_marginBottom="@dimen/layout_space"
+            android:fontFamily="@font/suit_b"
             android:background="@color/selector_button_color"
-            android:textColor="@color/selector_button_text_color"
             android:enabled="@{loginviewmodel.enabledButton==true? true:false}"
+            android:onClick="@{()->loginviewmodel.onClick()}"
+            android:text="로그인"
+            android:textColor="@color/selector_button_text_color"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/gd_right"
+            app:layout_constraintStart_toStartOf="@id/gd_left"
+
             app:layout_constraintTop_toBottomOf="@+id/password_detail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

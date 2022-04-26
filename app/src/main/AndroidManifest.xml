@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AndroidSturdy">
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
         <activity
             android:name="com.sopt.androidstudy.presentation.sign.screens.LoginActivity"
             android:windowSoftInputMode="adjustResize"
@@ -22,6 +22,8 @@
         <activity
             android:name="com.sopt.androidstudy.presentation.home.screens.MainActivity"
             android:exported="true">
+
+
         </activity>
     </application>
 </manifest>
