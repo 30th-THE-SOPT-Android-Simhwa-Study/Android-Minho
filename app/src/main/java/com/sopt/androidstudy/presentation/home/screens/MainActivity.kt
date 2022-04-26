@@ -20,8 +20,6 @@ class MainActivity : AppCompatActivity() {
         binding.mainViewModel = _viewModel
         val intent = intent
         val user = intent.getParcelableExtra<UserData>("userData")
-        Log.d("User", user?.uid.toString())
-        Log.d("Password", user?.password.toString())
         user?.let { _viewModel.setUserData(it) }
     }
 }
