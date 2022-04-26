@@ -15,8 +15,6 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MyViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //binding = ActivityMainBinding.inflate(layoutInflater)
-        //setContentView(binding.root)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this@MainActivity
         binding.mainViewModel = _viewModel
