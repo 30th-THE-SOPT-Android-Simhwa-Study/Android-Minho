@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="loginviewmodel"
+            type="com.sopt.androidstudy.presentation.sign.viewmodels.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="10dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Sopt"
+            android:textSize="32sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/email_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/shape_bordor_radius_5"
+            android:backgroundTint="@color/gray_100"
+            android:hint="이메일"
+            android:maxLines="1"
+            android:onTextChanged="@{loginviewmodel::onEmailTextChanged}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <TextView
+            android:id="@+id/email_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            android:text="이메일을 정확하게 입력해주세요."
+            android:textColor="@color/gray_200"
+            android:textSize="14sp"
+            android:visibility="@{loginviewmodel.emailValid==true ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_input" />
+
+        <EditText
+            android:id="@+id/password_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/shape_bordor_radius_5"
+            android:backgroundTint="@color/gray_100"
+            android:hint="패스워드"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:onTextChanged="@{loginviewmodel::onPasswordTextChanged}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email_detail" />
+
+        <TextView
+            android:id="@+id/password_detail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:maxLines="1"
+            android:text="8자리 이상의 영문자, 숫자, 특수 문자 조합으로 입력해주세요."
+            android:textColor="@color/gray_200"
+            android:textSize="14sp"
+            android:visibility="@{loginviewmodel.passwordValid == true ? View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password_input" />
+
+        <Button
+            android:id="@+id/sign_in"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="로그인"
+            android:background="@color/selector_button_color"
+            android:textColor="@color/selector_button_text_color"
+            android:enabled="@{loginviewmodel.enabledButton==true? true:false}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password_detail" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

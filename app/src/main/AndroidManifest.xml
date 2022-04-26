@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sopt.androidsturdy">
+    package="com.sopt.androidstudy">
 
     <application
         android:allowBackup="true"
@@ -10,14 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidSturdy">
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name="com.sopt.androidstudy.presentation.sign.screens.LoginActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="true" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.sopt.androidstudy.presentation.home.screens.MainActivity"
+            android:exported="true">
+        </activity>
     </application>
-
 </manifest>
