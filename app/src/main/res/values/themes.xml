@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.AndroidSturdy" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.AndroidSturdy" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,5 +13,30 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    
+    <style name="Widget.EditText.Style" parent="">
+        <item name="android:background">@drawable/shape_bordor_radius_5</item>
+        <item name="android:backgroundTint">@color/gray_100</item>
+        <item name="android:paddingHorizontal">@dimen/layout_space</item>
+        <item name="android:paddingVertical">@dimen/layout_space</item>
+        <item name="android:textColorHint">@color/gray_500</item>
+        <item name="android:textAppearance">@style/Widget.EditText.TextAppearance</item>
+    </style>
 
+    <style name="Widget.EditText.TextAppearance" parent="">
+        <item name="android:textSize">@dimen/edit_txt_size</item>
+        <item name="android:fontFamily">@font/suit_r</item>
+        <item name="android:textColor">@color/edit_color</item>
+    </style>
+    
+    <style name="Widget.HelpTextView.Style" parent="">
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textAppearance">@style/Widget.HelpTextView.TextAppearance</item>
+    </style>
+    <style name="Widget.HelpTextView.TextAppearance" parent="">
+        <item name="android:textColor">@color/gray_500</item>
+        <item name="android:fontFamily">@font/suit_r</item>
+        <item name="android:textSize">@dimen/edit_hint_size</item>
+    </style>
+    
 </resources>
