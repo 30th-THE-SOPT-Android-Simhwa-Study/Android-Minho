@@ -12,18 +12,14 @@ import com.sopt.androidstudy.presentation.home.viewmodels.MyViewModel
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    private val _viewModel: MyViewModel by viewModels()
+    private val viewModel: MyViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //binding = ActivityMainBinding.inflate(layoutInflater)
-        //setContentView(binding.root)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this@MainActivity
         binding.mainViewModel = _viewModel
         val intent = intent
         val user = intent.getParcelableExtra<UserData>("userData")
-        Log.d("User", user?.uid.toString())
-        Log.d("Password", user?.password.toString())
         user?.let { _viewModel.setUserData(it) }
     }
 }

@@ -10,7 +10,7 @@ class MyViewModel : ViewModel() {
 
 
     fun getUserData(): LiveData<UserData> = userData
-    fun setUserData(data:UserData){
+    fun setUserData(data: UserData) {
         userData.value = data
     }
 }
