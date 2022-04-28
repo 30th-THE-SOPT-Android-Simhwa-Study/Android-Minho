@@ -14,6 +14,7 @@ class LoginViewModel : ViewModel() {
     private val userPassword = MutableLiveData<String>()
     private val isEnabledButton = MediatorLiveData<Boolean>()
     private val is_click = MutableLiveData<Boolean>(false)
+
     init {
         initEnabledButton()
 
@@ -43,7 +44,6 @@ class LoginViewModel : ViewModel() {
         isEmailValid.value = emailPattern.matcher(userEmail.value).matches()
     }
 
-
     private fun checkPasswordFormat() {
         val passwordPattern =
             Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[$@$!%*#?&]).{7,15}.$")
@@ -51,17 +51,17 @@ class LoginViewModel : ViewModel() {
     }
 
     private fun combineAuthValid(emailValid: Boolean?, passwordValid: Boolean?): Boolean {
-        if (isEmailValid.value == null || isPasswordValid.value == null) {
+        if (emailValid == null || passwordValid == null) {
             return false
         }
-        return isEmailValid.value == true && isPasswordValid.value == true
+        return emailValid == true && passwordValid == true
     }
-     fun onClick(){
+
+    fun onClick() {
         is_click.value = true
     }
 
-
-    fun getIsClick():LiveData<Boolean> = is_click
+    fun getIsClick(): LiveData<Boolean> = is_click
     fun getUserEmail(): LiveData<String> = userEmail
     fun getUserPassword(): LiveData<String> = userPassword
     fun getEnabledButton(): LiveData<Boolean> = isEnabledButton

@@ -2,7 +2,12 @@ package com.sopt.androidstudy.data.model
 
 import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+<<<<<<< HEAD
+@Parcelize
+data class UserData(val uid: String?, val password:String?):Parcelable
+=======
 data class UserData(val uid: String?, val password: String?): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -25,3 +30,4 @@ data class UserData(val uid: String?, val password: String?): Parcelable {
         }
     }
 }
+>>>>>>> 3dd44b49d75ed72054fa02c20bd04208f0a404a3

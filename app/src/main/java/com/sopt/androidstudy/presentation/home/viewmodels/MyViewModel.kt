@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.sopt.androidstudy.data.model.UserData
 
 class MyViewModel : ViewModel() {
-    private val userData = MutableLiveData(UserData("", ""))
+    private val userData = MutableLiveData<UserData>()
 
 
     fun getUserData(): LiveData<UserData> = userData
