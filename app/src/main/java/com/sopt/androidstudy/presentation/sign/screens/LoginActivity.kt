@@ -10,6 +10,7 @@ import com.sopt.androidstudy.R
 import com.sopt.androidstudy.data.model.UserData
 import com.sopt.androidstudy.databinding.ActivityLogin2Binding
 import com.sopt.androidstudy.presentation.home.screens.MainActivity
+import com.sopt.androidstudy.presentation.save.screens.FriendActivity
 import com.sopt.androidstudy.presentation.sign.viewmodels.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
@@ -23,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         binding.loginviewmodel = myLoginViewModel
         myLoginViewModel.getIsClick().observe(this){
             if(it){
-                val intent = Intent(this, MainActivity::class.java).apply {
+                val intent = Intent(this, FriendActivity::class.java).apply {
                     putExtra("userData", UserData(myLoginViewModel.getUserEmail().value,
                         myLoginViewModel.getUserPassword().value
                     ))
