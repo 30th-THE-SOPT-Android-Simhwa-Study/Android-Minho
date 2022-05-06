@@ -10,24 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidSturdy">
         <activity
+            android:name=".presentation.save.screens.FriendDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.save.screens.FriendActivity"
-            android:exported="true" >
-
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".presentation.sign.screens.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".presentation.home.screens.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

@@ -1,20 +1,21 @@
 package com.sopt.androidstudy.presentation.save.viewmodels
 
-import android.util.Patterns
-import android.widget.Toast
 import androidx.lifecycle.*
-import com.google.android.material.snackbar.Snackbar
 import com.sopt.androidstudy.data.model.db.Friend
-import com.sopt.androidstudy.data.model.db.FriendRepository
+import com.sopt.androidstudy.data.model.types.MBTI
+import com.sopt.androidstudy.data.model.types.MBTIFeatures
+import com.sopt.androidstudy.domain.repository.FriendRepository
 import com.sopt.androidstudy.presentation.util.Event
+import com.sopt.androidstudy.presentation.util.safeValueOf
 import kotlinx.coroutines.launch
 
 class FriendViewModel(private val repository: FriendRepository) : ViewModel() {
 
-    val friends = repository.friends
+    val friends = repository.getAllFriends()
     val position = MutableLiveData<Int?>()
     val inputName = MutableLiveData<String?>()
     val inputEmail = MutableLiveData<String?>()
+    val inputMBTI = MutableLiveData<String?>()
     val saveOrUpdateButtonText = MutableLiveData<String>()
     val clearAllOrDeleteButtonText = MutableLiveData<String>()
 
@@ -26,16 +27,28 @@ class FriendViewModel(private val repository: FriendRepository) : ViewModel() {
         initSetting()
     }
 
+    fun getMBTIFeatures(): List<MBTIFeatures>? =
+        position.value?.let { friends.value?.get(it)?.mbti?.let { repository.getMBTIFeatures(it) } }
+
+
     fun saveOrUpdate() {
         if (!inputName.value.isNullOrBlank() && !inputEmail.value.isNullOrBlank()) {
             val name = inputName.value!!
             val email = inputEmail.value!!
+            val mbti = inputMBTI.value!!
             if (position.value == null) {
-                insert(Friend(0, name, email))
-            } else {
-                update(Friend(friends.value!!.get(position.value!!).id, name, email))
+                insert(Friend(0, name, email, safeValueOf<MBTI>(mbti.uppercase())))
+            } /*else {
+                update(
+                    Friend(
+                        friends.value!![position.value!!].id,
+                        name,
+                        email,
+                        safeValueOf<MBTI>(mbti.toUpperCase())
+                    )
+                )
                 initSetting()
-            }
+            }*/
 
         }
     }
@@ -45,10 +58,10 @@ class FriendViewModel(private val repository: FriendRepository) : ViewModel() {
     }
 
     fun clearAllOrDelete() {
-        if (position.value == null) clearAll() else {
-            delete(friends.value!!.get(position.value!!))
+        if (position.value == null) clearAll() /*else {
+            friends.value?.let { delete(it[position.value!!]) }
             initSetting()
-        }
+        }*/
     }
 
     fun insert(friend: Friend) {

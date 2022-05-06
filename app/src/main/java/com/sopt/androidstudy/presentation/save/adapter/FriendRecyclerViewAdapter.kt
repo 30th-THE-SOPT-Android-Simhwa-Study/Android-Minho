@@ -1,14 +1,12 @@
-package com.sopt.androidstudy.presentation.save.screens.adapter
+package com.sopt.androidstudy.presentation.save.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.databinding.ItemFriendRecyclerviewBinding
-import java.util.*
 
 class FriendRecyclerViewAdapter :
     ListAdapter<Friend, FriendRecyclerViewAdapter.FriendViewHolder>(FriendDiffUtil) {

@@ -4,4 +4,68 @@
     <string name="tv_password">8자리 이상의 영문자, 숫자, 특수 문자 조합으로 입력해주세요.</string>
     <string name="hint_email">이메일</string>
     <string name="hint_password">패스워드</string>
+    <!-- MBTI -->
+    <string name="istj1">책임감 강함</string>
+    <string name="istj2">시간 약속 잘지킴</string>
+    <string name="istj3">현재에 충실</string>
+
+    <string name="isfj1">섬세함</string>
+    <string name="isfj2">성실함</string>
+    <string name="isfj3">이타주의자</string>
+
+    <string name="istp1">관찰력 좋음</string>
+    <string name="istp2">원리원칙주의자</string>
+    <string name="istp3">단축키 잘 외움</string>
+
+    <string name="estj1">추진력있음</string>
+    <string name="estj2">일잘함</string>
+    <string name="estj3">완벽주의</string>
+
+    <string name="intj1">효율성 추구</string>
+    <string name="intj2">지적 활동을 선호</string>
+    <string name="intj3">분석왕</string>
+
+    <string name="estp1">눈치빠름</string>
+    <string name="estp2">분위기 잘탐</string>
+    <string name="estp3">형사물 좋아함</string>
+
+    <string name="esfj1">리액션 부자</string>
+    <string name="esfj2">정이 많음</string>
+    <string name="esfj3">설득 잘함</string>
+
+    <string name="isfp1">즉흥적</string>
+    <string name="isfp2">행복감 잘 느낌</string>
+    <string name="isfp3">자연 좋아함</string>
+
+    <string name="intp1">아이디어뱅크</string>
+    <string name="intp2">가끔 돌직구</string>
+    <string name="intp3">호기심 많음</string>
+
+    <string name="entj1">리더십 있음</string>
+    <string name="entj2">열정적</string>
+    <string name="entj3">비전이 확고함</string>
+
+    <string name="infj1">쉽게 상처받음</string>
+    <string name="infj2">생각이 많음</string>
+    <string name="infj3">배려심 깊음</string>
+
+    <string name="esfp1">에너지 넘침</string>
+    <string name="esfp2">분위기 메이커</string>
+    <string name="esfp3">재치 있음</string>
+
+    <string name="enfj1">붙임성 좋음</string>
+    <string name="enfj2">상상력 풍부함</string>
+    <string name="enfj3">감수성 충만</string>
+
+    <string name="infp1">호불호 명확</string>
+    <string name="infp2">공감과 배려</string>
+    <string name="infp3">분위기에 민감</string>
+
+    <string name="entp1">적응력 좋음</string>
+    <string name="entp2">자신감 뿜뿜</string>
+    <string name="entp3">창의적</string>
+
+    <string name="enfp1">표정 밝음</string>
+    <string name="enfp2">통찰력 있음</string>
+    <string name="enfp3">언어표현 잘함</string>
 </resources>

@@ -34,9 +34,20 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:hint="친구 이메일"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:text="@={myViewModel.inputEmail}"
             app:layout_constraintTop_toBottomOf="@id/my_name_text" />
+
+        <EditText
+            android:id="@+id/mbti_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:hint="친구 MBTI"
+            android:inputType="text"
+            android:text="@={myViewModel.inputMBTI}"
+            app:layout_constraintTop_toBottomOf="@id/email_text" />
 
         <Button
             android:id="@+id/save_or_update_button"
@@ -46,7 +57,7 @@
             android:layout_marginTop="20dp"
             android:onClick="@{() -> myViewModel.saveOrUpdate()}"
             android:text="@={myViewModel.saveOrUpdateButtonText}"
-            app:layout_constraintTop_toBottomOf="@id/email_text" />
+            app:layout_constraintTop_toBottomOf="@id/mbti_text" />
 
 
         <Button

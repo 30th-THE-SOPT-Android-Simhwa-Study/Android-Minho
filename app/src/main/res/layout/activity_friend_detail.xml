@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.friend.screens.FriendDetailActivity">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sopt.androidstudy.presentation.save.viewmodels.FriendDetailViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/mbti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:fontFamily="@font/suit_b"
+            android:text="@{viewModel.friend.mbti.toString()}"
+            android:textColor="#292929"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mbti_feature1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/suit_r"
+                android:text="@{context.getString(viewModel.getMBTIFeatures().get(0).strRes)}"
+                android:textColor="#292929"
+                android:textSize="20sp"
+                tools:text="즉흥적" />
+
+            <TextView
+                android:id="@+id/mbti_feature2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="16dp"
+                android:fontFamily="@font/suit_r"
+                android:gravity="center"
+                android:text="@{context.getString(viewModel.getMBTIFeatures().get(1).strRes)}"
+                android:textColor="#292929"
+                android:textSize="20sp"
+                tools:text="행복감 잘 느낌" />
+
+            <TextView
+                android:id="@+id/mbti_feature3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/suit_r"
+                android:gravity="center"
+                android:text="@{context.getString(viewModel.getMBTIFeatures().get(2).strRes)}"
+                android:textColor="#292929"
+                android:textSize="20sp"
+                tools:text="자연 좋아함" />
+        </LinearLayout>
+    </LinearLayout>
+</layout>

@@ -2,11 +2,13 @@ package com.sopt.androidstudy.data.model.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.sopt.androidstudy.data.model.types.MBTI
+import com.sopt.androidstudy.data.model.types.MBTIFeatures
 
 @Dao
 interface FriendDAO {
     @Insert
-    suspend fun insertFriend(friend: Friend) : Long
+    suspend fun insertFriend(friend: Friend): Long
 
     @Update
     suspend fun updateFriend(friend: Friend)
@@ -19,4 +21,5 @@ interface FriendDAO {
 
     @Query("SELECT * FROM friend_data_table")
     fun getAllFriends(): LiveData<List<Friend>>
+
 }
