@@ -56,12 +56,11 @@ class FriendActivity : AppCompatActivity() {
         }
         friendViewModel.showToast.observe(this) {
             it.getContentIfNotHandled()?.let {
-                if (friendViewModel.isValid.value == true)
-                    Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show() else Toast.makeText(
-                    this,
-                    "exception : invalid email type",
-                    Toast.LENGTH_SHORT
-                ).show()
+         Toast.makeText(
+            this,
+            if (friendViewModel.isValid.value == true) "성공" else "exception : invalid email type",
+            Toast.LENGTH_SHORT
+        ).show()
             }
         }
         friendViewModel.friends.value?.let { friendAdapter.friendData.addAll(it) }
