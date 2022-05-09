@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.sopt.androidstudy.R
-import com.sopt.androidstudy.data.datasources.FriendDataSoures
+import com.sopt.androidstudy.data.datasources.FriendDataSources
 import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.db.FriendDatabase
 import com.sopt.androidstudy.data.repository.FriendRepositoryImpl
@@ -26,11 +26,11 @@ class FriendDetailActivity : AppCompatActivity() {
 
     private fun initDatabaseViewModel() {
         val dao = FriendDatabase.getInstance(applicationContext).friendDAO
-        val dataSoures = FriendDataSoures(dao)
-        val repoimpl = FriendRepositoryImpl(dataSoures)
-        val factory = FriendDetailViewModelFactory(repoimpl)
+        val dataSources = FriendDataSources(dao)
+        val repositoryImpl = FriendRepositoryImpl(dataSources)
+        val factory = FriendDetailViewModelFactory(repositoryImpl)
         friendDetailViewModel =
-            ViewModelProvider(this, factory).get(FriendDetailViewModel::class.java)
+            ViewModelProvider(this, factory)[FriendDetailViewModel::class.java]
     }
 
     private fun initBindingView() {

@@ -1,15 +1,13 @@
 package com.sopt.androidstudy.data.repository
 
 import androidx.lifecycle.LiveData
-import com.sopt.androidstudy.data.datasources.FriendDataSoures
+import com.sopt.androidstudy.data.datasources.FriendDataSources
 import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.types.MBTI
 import com.sopt.androidstudy.data.model.types.MBTIFeatures
 import com.sopt.androidstudy.domain.repository.FriendRepository
 
-class FriendRepositoryImpl(private val friendDataSources: FriendDataSoures) : FriendRepository {
-
-    val friends = friendDataSources.getAllFriends()
+class FriendRepositoryImpl(private val friendDataSources: FriendDataSources) : FriendRepository {
 
     override suspend fun insert(friend: Friend): Boolean = friendDataSources.insert(friend)
 

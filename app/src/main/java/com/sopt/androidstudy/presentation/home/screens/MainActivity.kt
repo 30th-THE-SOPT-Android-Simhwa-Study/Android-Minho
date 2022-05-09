@@ -15,10 +15,10 @@ class MainActivity : AppCompatActivity() {
     private val viewModel: MyViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.lifecycleOwner = this@MainActivity
-        binding.mainViewModel = viewModel
-        val intent = intent
+        DataBindingUtil.setContentView<ActivityMainBinding?>(this, R.layout.activity_main).run {
+            lifecycleOwner = this@MainActivity
+            mainViewModel = viewModel
+        }
         val user = intent.getParcelableExtra<UserData>("userData")
         user?.let { viewModel.setUserData(it) }
     }

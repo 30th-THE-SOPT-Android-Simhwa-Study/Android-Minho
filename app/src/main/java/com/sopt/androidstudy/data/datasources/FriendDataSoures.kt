@@ -7,14 +7,13 @@ import com.sopt.androidstudy.data.model.db.FriendDAO
 import com.sopt.androidstudy.data.model.types.MBTI
 import com.sopt.androidstudy.data.model.types.MBTIFeatures
 
-class FriendDataSoures(private val dao: FriendDAO) {
+class FriendDataSources(private val dao: FriendDAO) {
 
     suspend fun insert(friend: Friend): Boolean =
         if (Patterns.EMAIL_ADDRESS.matcher(friend.email).matches()) {
             dao.insertFriend(friend)
             true
         } else false
-
 
     suspend fun update(friend: Friend) {
         dao.updateFriend(friend)
@@ -29,7 +28,6 @@ class FriendDataSoures(private val dao: FriendDAO) {
     }
 
     fun getAllFriends(): LiveData<List<Friend>> = dao.getAllFriends()
-
 
     fun getMBTIFeatures(mbti: MBTI): List<MBTIFeatures>? {
 
@@ -54,7 +52,6 @@ class FriendDataSoures(private val dao: FriendDAO) {
                 MBTIFeatures.ENTP2,
                 MBTIFeatures.ENTP3
             )
-
             MBTI.ENFJ -> listOf<MBTIFeatures>(
                 MBTIFeatures.ENFJ1,
                 MBTIFeatures.ENFJ2,
