@@ -30,13 +30,12 @@ class FriendViewModel(private val repository: FriendRepository) : ViewModel() {
         if (!inputName.value.isNullOrBlank() && !inputEmail.value.isNullOrBlank()) {
             val name = inputName.value!!
             val email = inputEmail.value!!
-            if (position.value == null) {
+            if (position.value == null)
                 insert(Friend(0, name, email))
-            } else {
+            else 
                 update(Friend(friends.value!!.get(position.value!!).id, name, email))
-                initSetting()
-            }
-
+            
+            initSetting()
         }
     }
 
