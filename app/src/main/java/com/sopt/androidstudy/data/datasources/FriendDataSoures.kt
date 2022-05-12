@@ -6,6 +6,8 @@ import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.db.FriendDAO
 import com.sopt.androidstudy.data.model.types.MBTI
 import com.sopt.androidstudy.data.model.types.MBTIFeatures
+import javax.inject.Inject
+import javax.inject.Singleton
 
 class FriendDataSources(private val dao: FriendDAO) {
 

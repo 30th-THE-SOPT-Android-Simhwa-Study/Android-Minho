@@ -3,13 +3,12 @@ package com.sopt.androidstudy.presentation.save.screens
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.sopt.androidstudy.R
-import com.sopt.androidstudy.data.datasources.FriendDataSoures
-import com.sopt.androidstudy.data.model.UserData
+import com.sopt.androidstudy.data.datasources.FriendDataSources
+import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.db.FriendDatabase
 import com.sopt.androidstudy.data.repository.FriendRepositoryImpl
 import com.sopt.androidstudy.databinding.ActivitySaveBinding
@@ -33,39 +32,26 @@ class FriendActivity : AppCompatActivity() {
 
     private fun initDatabaseViewModel() {
         val dao = FriendDatabase.getInstance(applicationContext).friendDAO
-        val dataSoures = FriendDataSoures(dao)
-        val repoimpl = FriendRepositoryImpl(dataSoures)
-        val factory = FriendViewModelFactory(repoimpl)
-        friendViewModel = ViewModelProvider(this, factory).get(FriendViewModel::class.java)
+        val dataSources = FriendDataSources(dao)
+        val repositoryImpl = FriendRepositoryImpl(dataSources)
+        val factory = FriendViewModelFactory(repositoryImpl)
+        friendViewModel = ViewModelProvider(this, factory)[FriendViewModel::class.java]
     }
 
     private fun initBindingView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_save)
         binding.myViewModel = friendViewModel
         binding.lifecycleOwner = this
-        friendAdapter = FriendRecyclerViewAdapter()
-        friendAdapter.itemOnClickListener = object : FriendRecyclerViewAdapter.onItemClickListener {
-            override fun onItemClick(
-                position: Int
-            ) {
-                friendViewModel.saveOrUpdateButtonText.value = "업데이트"
-                friendViewModel.clearAllOrDeleteButtonText.value = "삭제"
-                friendViewModel.position.value = position
-                val intent = Intent(this@FriendActivity, FriendDetailActivity::class.java).apply {
-                    putExtra("friend", friendViewModel.friends.value?.get(position))
-                }
-                startActivity(intent)
-                Log.d(
-                    "Hi",
-                    this@FriendActivity.getString(
-                        friendViewModel.getMBTIFeatures()?.get(0)?.strRes!!
-                    )
-                )
-            }
-        }
+        friendAdapter = FriendRecyclerViewAdapter(::selectFriend)
+        initEvent()
+        friendViewModel.friends.value?.let { friendAdapter.submitList(it) }
+        binding.mainRcv.adapter = friendAdapter
+    }
+
+    private fun initEvent() {
         friendViewModel.showToast.observe(this) {
             it.getContentIfNotHandled()?.let {
-                if (friendViewModel.isValid.value == true)
+                if (friendViewModel.isInsertSuccess.value == true)
                     Toast.makeText(this, "성공", Toast.LENGTH_SHORT).show() else Toast.makeText(
                     this,
                     "exception : invalid email type",
@@ -73,10 +59,16 @@ class FriendActivity : AppCompatActivity() {
                 ).show()
             }
         }
-        friendViewModel.friends.value?.let { friendAdapter.friendData.addAll(it) }
-        binding.mainRcv.adapter = friendAdapter
     }
 
+    private fun selectFriend(friend: Friend) {
+        friendViewModel.selectFriend(friend = friend)
+        //이전 기능 포함
+        val intent = Intent(this@FriendActivity, FriendDetailActivity::class.java).apply {
+            putExtra("friend", friendViewModel.friend.value)
+        }
+        startActivity(intent)
+    }
 
     private fun displayFriendsList() {
         friendViewModel.friends.observe(this) {

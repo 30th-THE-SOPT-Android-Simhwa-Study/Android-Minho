@@ -7,13 +7,10 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.databinding.ItemFriendRecyclerviewBinding
+import java.util.*
 
-class FriendRecyclerViewAdapter :
+class FriendRecyclerViewAdapter(private val itemClickListener: (Friend) -> Unit) :
     ListAdapter<Friend, FriendRecyclerViewAdapter.FriendViewHolder>(FriendDiffUtil) {
-
-    var friendData = mutableListOf<Friend>()
-
-    var itemOnClickListener: onItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {
         val binding = ItemFriendRecyclerviewBinding.inflate(
@@ -21,52 +18,36 @@ class FriendRecyclerViewAdapter :
             parent,
             false
         )
-        return FriendViewHolder(binding)
+        return FriendViewHolder(binding, itemClickListener)
     }
 
     override fun onBindViewHolder(holder: FriendViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
-    /*fun moveItem(fromPosition: Int, toPosition: Int) {
-        val newList = currentList.toMutableList()
-        Collections.swap(newList, fromPosition, toPosition)
-        submitList(newList)
-    }*/
 
-    fun removeItem(position: Int) {
-        val newList = currentList.toMutableList()
-        newList.removeAt(position)
-        submitList(newList)
-    }
-
-    inner class FriendViewHolder(private val binding: ItemFriendRecyclerviewBinding) :
+    class FriendViewHolder(
+        private val binding: ItemFriendRecyclerviewBinding,
+        private val itemClickListener: (Friend) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Friend) {
             with(binding) {
                 friend = item
                 layoutItem.setOnClickListener {
-                    itemOnClickListener?.onItemClick(
-                        adapterPosition
-                    )
+                    itemClickListener(item)
                 }
             }
         }
-
     }
 
-    interface onItemClickListener {
-        fun onItemClick(position: Int)
-    }
-
-
-    object FriendDiffUtil : DiffUtil.ItemCallback<Friend>() {
+    companion object FriendDiffUtil : DiffUtil.ItemCallback<Friend>() {
 
         override fun areItemsTheSame(oldItem: Friend, newItem: Friend): Boolean {
-            return oldItem == newItem
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Friend, newItem: Friend): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem == newItem
         }
     }
 }

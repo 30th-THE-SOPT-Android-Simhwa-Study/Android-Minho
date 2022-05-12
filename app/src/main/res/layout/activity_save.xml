@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="com.sopt.androidstudy.R" />
+
         <variable
             name="myViewModel"
             type="com.sopt.androidstudy.presentation.save.viewmodels.FriendViewModel" />
@@ -56,7 +58,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:onClick="@{() -> myViewModel.saveOrUpdate()}"
-            android:text="@={myViewModel.saveOrUpdateButtonText}"
+            android:text="@{context.getString(myViewModel.switchFunction==false? R.string.save:R.string.update)}"
             app:layout_constraintTop_toBottomOf="@id/mbti_text" />
 
 
@@ -67,7 +69,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="20dp"
             android:onClick="@{() -> myViewModel.clearAllOrDelete()}"
-            android:text="@={myViewModel.clearAllOrDeleteButtonText}"
+            android:text="@{context.getString(myViewModel.switchFunction==false? R.string.all_delete:R.string.delete)}"
             app:layout_constraintTop_toBottomOf="@id/save_or_update_button" />
 
         <androidx.recyclerview.widget.RecyclerView

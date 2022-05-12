@@ -6,6 +6,7 @@ import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.types.MBTI
 import com.sopt.androidstudy.data.model.types.MBTIFeatures
 import com.sopt.androidstudy.domain.repository.FriendRepository
+import javax.inject.Inject
 
 class FriendRepositoryImpl(private val friendDataSources: FriendDataSources) : FriendRepository {
 

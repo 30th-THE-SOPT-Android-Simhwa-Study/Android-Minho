@@ -8,18 +8,17 @@ import com.sopt.androidstudy.domain.repository.FriendRepository
 import com.sopt.androidstudy.presentation.util.Event
 import com.sopt.androidstudy.presentation.util.safeValueOf
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FriendViewModel(private val repository: FriendRepository) : ViewModel() {
+class FriendViewModel @Inject constructor(private val repository: FriendRepository) : ViewModel() {
 
     val friends = repository.getAllFriends()
-    val position = MutableLiveData<Int?>()
+    val friend = MutableLiveData<Friend?>()
+    val switchFunction = MutableLiveData<Boolean>(false)
     val inputName = MutableLiveData<String?>()
     val inputEmail = MutableLiveData<String?>()
     val inputMBTI = MutableLiveData<String?>()
-    val saveOrUpdateButtonText = MutableLiveData<String>()
-    val clearAllOrDeleteButtonText = MutableLiveData<String>()
-
-    val isValid = MutableLiveData<Boolean>()
+    val isInsertSuccess = MutableLiveData<Boolean>()
     private val _showToast = MutableLiveData<Event<Boolean>>()
     val showToast: LiveData<Event<Boolean>> = _showToast
 
@@ -27,75 +26,78 @@ class FriendViewModel(private val repository: FriendRepository) : ViewModel() {
         initSetting()
     }
 
-    fun getMBTIFeatures(): List<MBTIFeatures>? =
-        position.value?.let { friends.value?.get(it)?.mbti?.let { repository.getMBTIFeatures(it) } }
-
 
     fun saveOrUpdate() {
-        if (!inputName.value.isNullOrBlank() && !inputEmail.value.isNullOrBlank()) {
+        if (!inputName.value.isNullOrBlank() && !inputEmail.value.isNullOrBlank() && !inputMBTI.value.isNullOrBlank()) {
             val name = inputName.value!!
             val email = inputEmail.value!!
             val mbti = inputMBTI.value!!
-            if (position.value == null) {
+            if (switchFunction.value == false) {
                 insert(Friend(0, name, email, safeValueOf<MBTI>(mbti.uppercase())))
-            } /*else {
+            } else {
                 update(
                     Friend(
-                        friends.value!![position.value!!].id,
+                        friend.value!!.id,
                         name,
                         email,
-                        safeValueOf<MBTI>(mbti.toUpperCase())
+                        safeValueOf<MBTI>(mbti.uppercase())
                     )
                 )
-                initSetting()
-            }*/
-
+            }
+            initSetting()
         }
     }
 
-    fun onStartEvent() {
+    private fun onStartEvent() {
         _showToast.value = Event(true)
     }
 
     fun clearAllOrDelete() {
-        if (position.value == null) clearAll() /*else {
-            friends.value?.let { delete(it[position.value!!]) }
-            initSetting()
-        }*/
+        if (switchFunction.value == false) clearAll() else {
+            delete(friend = friend.value!!)
+        }
+        initSetting()
     }
 
-    fun insert(friend: Friend) {
+    private fun insert(friend: Friend) {
         viewModelScope.launch {
-            isValid.value = repository.insert(friend)
+            isInsertSuccess.value = repository.insert(friend)
             onStartEvent()
-            initSetting()
         }
 
     }
 
-    fun update(friend: Friend) {
+    private fun update(friend: Friend) {
         viewModelScope.launch {
             repository.update(friend)
         }
     }
 
-    fun delete(friend: Friend) {
+    private fun delete(friend: Friend) {
         viewModelScope.launch {
             repository.delete(friend)
         }
     }
 
-    fun clearAll() {
+    private fun clearAll() {
         viewModelScope.launch {
             repository.deleteAll()
         }
     }
 
+    fun selectFriend(friend: Friend) {
+        this.friend.value = friend
+        switchFunction.value = true
+        inputEmail.value = friend.email
+        inputName.value = friend.name
+        inputMBTI.value = friend.mbti.toString()
+    }
+
     private fun initSetting() {
-        saveOrUpdateButtonText.value = "저장"
-        clearAllOrDeleteButtonText.value = "전체 삭제"
-        position.value = null
         inputName.value = null
         inputEmail.value = null
+        inputMBTI.value = null
+        switchFunction.value = false
     }
+
 }
