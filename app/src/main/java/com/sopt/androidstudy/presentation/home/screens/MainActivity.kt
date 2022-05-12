@@ -17,9 +17,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this@MainActivity
-        binding.mainViewModel = _viewModel
+        binding.mainViewModel = viewModel
         val intent = intent
         val user = intent.getParcelableExtra<UserData>("userData")
-        user?.let { _viewModel.setUserData(it) }
+        user?.let { viewModel.setUserData(it) }
     }
 }
