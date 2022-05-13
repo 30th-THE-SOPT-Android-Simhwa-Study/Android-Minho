@@ -15,11 +15,14 @@ import com.sopt.androidstudy.databinding.ActivitySaveBinding
 import com.sopt.androidstudy.presentation.save.adapter.FriendRecyclerViewAdapter
 import com.sopt.androidstudy.presentation.save.viewmodels.FriendViewModel
 import com.sopt.androidstudy.presentation.save.viewmodels.FriendViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class FriendActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySaveBinding
-    private lateinit var friendViewModel: FriendViewModel
-    private lateinit var friendAdapter: FriendRecyclerViewAdapter
+    @Inject private lateinit var friendViewModel: FriendViewModel
+    @Inject private lateinit var friendAdapter: FriendRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

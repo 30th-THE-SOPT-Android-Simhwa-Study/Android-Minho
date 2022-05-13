@@ -7,9 +7,11 @@ import com.sopt.androidstudy.data.model.types.MBTIFeatures
 import com.sopt.androidstudy.domain.repository.FriendRepository
 import com.sopt.androidstudy.presentation.util.Event
 import com.sopt.androidstudy.presentation.util.safeValueOf
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class FriendViewModel @Inject constructor(private val repository: FriendRepository) : ViewModel() {
 
     val friends = repository.getAllFriends()

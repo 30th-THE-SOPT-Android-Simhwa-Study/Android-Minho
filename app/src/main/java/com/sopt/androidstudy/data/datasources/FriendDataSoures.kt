@@ -9,7 +9,8 @@ import com.sopt.androidstudy.data.model.types.MBTIFeatures
 import javax.inject.Inject
 import javax.inject.Singleton
 
-class FriendDataSources(private val dao: FriendDAO) {
+@Singleton
+class FriendDataSources @Inject constructor(private val dao: FriendDAO) {
 
     suspend fun insert(friend: Friend): Boolean =
         if (Patterns.EMAIL_ADDRESS.matcher(friend.email).matches()) {

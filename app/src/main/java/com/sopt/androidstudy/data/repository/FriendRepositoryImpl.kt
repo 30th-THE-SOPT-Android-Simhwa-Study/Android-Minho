@@ -7,8 +7,10 @@ import com.sopt.androidstudy.data.model.types.MBTI
 import com.sopt.androidstudy.data.model.types.MBTIFeatures
 import com.sopt.androidstudy.domain.repository.FriendRepository
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class FriendRepositoryImpl(private val friendDataSources: FriendDataSources) : FriendRepository {
+@Singleton
+class FriendRepositoryImpl @Inject constructor(private val friendDataSources: FriendDataSources) : FriendRepository {
 
     override suspend fun insert(friend: Friend): Boolean = friendDataSources.insert(friend)
 
