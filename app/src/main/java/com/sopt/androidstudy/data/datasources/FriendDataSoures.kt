@@ -9,7 +9,6 @@ import com.sopt.androidstudy.data.model.types.MBTIFeatures
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
 class FriendDataSources @Inject constructor(private val dao: FriendDAO) {
 
     suspend fun insert(friend: Friend): Boolean =

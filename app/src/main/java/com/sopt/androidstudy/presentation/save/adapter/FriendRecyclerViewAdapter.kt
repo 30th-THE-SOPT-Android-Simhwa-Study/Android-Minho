@@ -10,7 +10,7 @@ import com.sopt.androidstudy.databinding.ItemFriendRecyclerviewBinding
 import java.util.*
 import javax.inject.Inject
 
-class FriendRecyclerViewAdapter @Inject constructor(private val itemClickListener: (Friend) -> Unit) :
+class FriendRecyclerViewAdapter(private val itemClickListener: (Friend) -> Unit) :
     ListAdapter<Friend, FriendRecyclerViewAdapter.FriendViewHolder>(FriendDiffUtil) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendViewHolder {

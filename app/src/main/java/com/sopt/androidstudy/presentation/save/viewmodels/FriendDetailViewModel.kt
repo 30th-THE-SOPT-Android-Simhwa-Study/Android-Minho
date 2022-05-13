@@ -6,8 +6,11 @@ import androidx.lifecycle.ViewModel
 import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.types.MBTIFeatures
 import com.sopt.androidstudy.domain.repository.FriendRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class FriendDetailViewModel(private val repository: FriendRepository) : ViewModel() {
+@HiltViewModel
+class FriendDetailViewModel @Inject constructor(private val repository: FriendRepository) : ViewModel() {
     private val friend = MutableLiveData<Friend?>()
 
     fun setFriend(friend: Friend) {

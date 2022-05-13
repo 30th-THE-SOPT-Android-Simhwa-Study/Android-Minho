@@ -2,6 +2,7 @@ package com.sopt.androidstudy.presentation.save.screens
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.sopt.androidstudy.R
@@ -11,27 +12,19 @@ import com.sopt.androidstudy.data.model.db.FriendDatabase
 import com.sopt.androidstudy.data.repository.FriendRepositoryImpl
 import com.sopt.androidstudy.databinding.ActivityFriendDetailBinding
 import com.sopt.androidstudy.presentation.save.viewmodels.FriendDetailViewModel
-import com.sopt.androidstudy.presentation.save.viewmodels.FriendDetailViewModelFactory
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FriendDetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFriendDetailBinding
-    private lateinit var friendDetailViewModel: FriendDetailViewModel
+    private val friendDetailViewModel: FriendDetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        initDatabaseViewModel()
         initBindingView()
     }
 
-    private fun initDatabaseViewModel() {
-        val dao = FriendDatabase.getInstance(applicationContext).friendDAO
-        val dataSources = FriendDataSources(dao)
-        val repositoryImpl = FriendRepositoryImpl(dataSources)
-        val factory = FriendDetailViewModelFactory(repositoryImpl)
-        friendDetailViewModel =
-            ViewModelProvider(this, factory)[FriendDetailViewModel::class.java]
-    }
 
     private fun initBindingView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_friend_detail)

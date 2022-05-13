@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.sopt.androidstudy.R
@@ -14,32 +15,22 @@ import com.sopt.androidstudy.data.repository.FriendRepositoryImpl
 import com.sopt.androidstudy.databinding.ActivitySaveBinding
 import com.sopt.androidstudy.presentation.save.adapter.FriendRecyclerViewAdapter
 import com.sopt.androidstudy.presentation.save.viewmodels.FriendViewModel
-import com.sopt.androidstudy.presentation.save.viewmodels.FriendViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class FriendActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySaveBinding
-    @Inject private lateinit var friendViewModel: FriendViewModel
-    @Inject private lateinit var friendAdapter: FriendRecyclerViewAdapter
+    private val friendViewModel: FriendViewModel by viewModels()
+    private lateinit var friendAdapter: FriendRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //val user = intent.getParcelableExtra<UserData>("userData")
         //로그인시 내 계정 정보 받아오기. 아직은 안씀
-        initDatabaseViewModel()
         initBindingView()
         displayFriendsList()
     }
 
-    private fun initDatabaseViewModel() {
-        val dao = FriendDatabase.getInstance(applicationContext).friendDAO
-        val dataSources = FriendDataSources(dao)
-        val repositoryImpl = FriendRepositoryImpl(dataSources)
-        val factory = FriendViewModelFactory(repositoryImpl)
-        friendViewModel = ViewModelProvider(this, factory)[FriendViewModel::class.java]
-    }
 
     private fun initBindingView() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_save)
