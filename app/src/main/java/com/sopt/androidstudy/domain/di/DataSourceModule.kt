@@ -24,7 +24,7 @@ object DataSourceModule {
     }
 
     @Provides
-    fun provideDao(database: FriendDatabase):FriendDAO{
+    fun provideDao(database: FriendDatabase): FriendDAO{
         return database.friendDAO()
     }
 }
