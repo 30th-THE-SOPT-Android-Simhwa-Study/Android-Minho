@@ -31,7 +31,7 @@ class FriendDetailActivity : AppCompatActivity() {
         binding.viewModel = friendDetailViewModel
         binding.lifecycleOwner = this
         val friend = intent.getParcelableExtra<Friend>("friend")
-        if (friend != null) {
+        friend?.let {
             friendDetailViewModel.setFriend(friend)
         }
     }
