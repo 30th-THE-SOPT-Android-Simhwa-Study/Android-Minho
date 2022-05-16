@@ -13,7 +13,7 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
 
     @Binds
-    abstract fun bindToRepository(impl: FriendRepositoryImpl):FriendRepository
+    abstract fun bindToRepository(impl: FriendRepositoryImpl): FriendRepository
 
 
 }
