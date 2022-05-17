@@ -19,7 +19,7 @@ class CoroutineExampleActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCoroutineExampleBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        with(binding){
+        with(binding) {
             progressBar.visibility = View.INVISIBLE
             btnDownload.setOnClickListener {
                 CoroutineScope(Dispatchers.Main).launch { // 코루틴의 메인 영역
@@ -34,7 +34,8 @@ class CoroutineExampleActivity : AppCompatActivity() {
             }
         }
     }
-    private suspend fun loadImage(imageUrl:String) : Bitmap {
+
+    private suspend fun loadImage(imageUrl: String): Bitmap {
         return withContext(Dispatchers.IO) {
             val url = URL(imageUrl)
             val stream = url.openStream()

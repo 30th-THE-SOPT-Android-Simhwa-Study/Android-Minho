@@ -5,10 +5,12 @@
       <map>
         <entry key="app/src/main/res/drawable/shape_bordor_radius_5.xml" value="0.3765" />
         <entry key="app/src/main/res/font/montserrat_family.xml" value="0.2140625" />
-        <entry key="app/src/main/res/layout/activity_friend_detail.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/activity_coroutine_example.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/activity_coroutine_lotto.xml" value="0.3362613863376174" />
+        <entry key="app/src/main/res/layout/activity_friend_detail.xml" value="0.2265625" />
         <entry key="app/src/main/res/layout/activity_login2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.121875" />
-        <entry key="app/src/main/res/layout/activity_save.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_save.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_friend_recyclerview.xml" value="0.16770833333333332" />
       </map>
     </option>
