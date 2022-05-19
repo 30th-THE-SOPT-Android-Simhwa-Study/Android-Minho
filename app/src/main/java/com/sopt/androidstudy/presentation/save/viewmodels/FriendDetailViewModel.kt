@@ -22,6 +22,7 @@ class FriendDetailViewModel @Inject constructor(private val repository: FriendRe
     fun getMBTIFeatures(): List<MBTIFeatures>? =
         friend.value?.mbti?.let { repository.getMBTIFeatures(it) }
 
+
     companion object {
         private const val TAG = "FriendDetailViewModel"
     }

@@ -71,6 +71,19 @@
             app:layout_constraintTop_toBottomOf="@id/email_input" />
 
         <EditText
+            android:id="@+id/name_input"
+            style="@style/Widget.EditText.Style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_base_margin"
+            android:hint="이름"
+            android:maxLines="1"
+            android:onTextChanged="@{loginviewmodel::onNameTextChanged}"
+            app:layout_constraintEnd_toEndOf="@id/gd_right"
+            app:layout_constraintStart_toStartOf="@id/gd_left"
+            app:layout_constraintTop_toBottomOf="@id/email_detail" />
+
+        <EditText
             android:id="@+id/password_input"
             style="@style/Widget.EditText.Style"
             android:layout_width="0dp"
@@ -82,7 +95,7 @@
             android:onTextChanged="@{loginviewmodel::onPasswordTextChanged}"
             app:layout_constraintEnd_toEndOf="@id/gd_right"
             app:layout_constraintStart_toStartOf="@id/gd_left"
-            app:layout_constraintTop_toBottomOf="@id/email_detail" />
+            app:layout_constraintTop_toBottomOf="@id/name_input" />
 
         <TextView
             android:id="@+id/password_detail"

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.types.MBTI
 import com.sopt.androidstudy.data.model.types.MBTIFeatures
+import kotlinx.coroutines.flow.Flow
 
 interface FriendRepository {
     suspend fun insert(friend: Friend): Boolean
@@ -14,7 +15,7 @@ interface FriendRepository {
 
     suspend fun deleteAll()
 
-    fun getAllFriends(): LiveData<List<Friend>>
+    fun getAllFriends(): Flow<List<Friend>>
 
     fun getMBTIFeatures(mbti: MBTI): List<MBTIFeatures>?
 }

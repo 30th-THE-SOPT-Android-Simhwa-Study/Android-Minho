@@ -6,8 +6,8 @@ import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.db.FriendDAO
 import com.sopt.androidstudy.data.model.types.MBTI
 import com.sopt.androidstudy.data.model.types.MBTIFeatures
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class FriendDataSources @Inject constructor(private val dao: FriendDAO) {
 
@@ -29,7 +29,7 @@ class FriendDataSources @Inject constructor(private val dao: FriendDAO) {
         dao.deleteAll()
     }
 
-    fun getAllFriends(): LiveData<List<Friend>> = dao.getAllFriends()
+    fun getAllFriends(): Flow<List<Friend>> = dao.getAllFriends()
 
     fun getMBTIFeatures(mbti: MBTI): List<MBTIFeatures>? {
 

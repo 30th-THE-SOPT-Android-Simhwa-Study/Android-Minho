@@ -11,6 +11,7 @@ class LoginViewModel : ViewModel() {
     private val isEmailValid = MutableLiveData<Boolean>(false)
     private val isPasswordValid = MutableLiveData<Boolean>(false)
     private val userEmail = MutableLiveData<String>()
+    private val userName = MutableLiveData<String>()
     private val userPassword = MutableLiveData<String>()
     private val isEnabledButton = MediatorLiveData<Boolean>()
     private val is_click = MutableLiveData<Boolean>(false)
@@ -32,6 +33,10 @@ class LoginViewModel : ViewModel() {
     fun onEmailTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
         userEmail.value = s.toString().trim()
         checkEmailFormat()
+    }
+
+    fun onNameTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+        userName.value = s.toString().trim()
     }
 
     fun onPasswordTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -64,6 +69,7 @@ class LoginViewModel : ViewModel() {
     fun getIsClick(): LiveData<Boolean> = is_click
     fun getUserEmail(): LiveData<String> = userEmail
     fun getUserPassword(): LiveData<String> = userPassword
+    fun getUserName(): LiveData<String> = userName
     fun getEnabledButton(): LiveData<Boolean> = isEnabledButton
     fun getEmailValid(): LiveData<Boolean> = isEmailValid
     fun getPasswordValid(): LiveData<Boolean> = isPasswordValid

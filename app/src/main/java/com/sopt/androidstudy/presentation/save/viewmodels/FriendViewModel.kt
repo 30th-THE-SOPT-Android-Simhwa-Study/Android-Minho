@@ -8,12 +8,13 @@ import com.sopt.androidstudy.domain.repository.FriendRepository
 import com.sopt.androidstudy.presentation.util.Event
 import com.sopt.androidstudy.presentation.util.safeValueOf
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class FriendViewModel @Inject constructor(private val repository: FriendRepository) : ViewModel() {
-    val friends = repository.getAllFriends()
+    val friends = repository.getAllFriends().asLiveData()
     val friend = MutableLiveData<Friend?>()
     val switchFunction = MutableLiveData<Boolean>(false)
     val inputName = MutableLiveData<String?>()
@@ -91,7 +92,7 @@ class FriendViewModel @Inject constructor(private val repository: FriendReposito
         switchFunction.value = true
         inputEmail.value = friend.email
         inputName.value = friend.name
-        inputMBTI.value = friend.mbti.toString()
+        inputMBTI.value = friend.mbti?.toString()
     }
 
     private fun initSetting() {
