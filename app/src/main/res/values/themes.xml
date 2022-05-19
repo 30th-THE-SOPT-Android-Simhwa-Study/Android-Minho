@@ -38,5 +38,5 @@
         <item name="android:fontFamily">@font/suit_r</item>
         <item name="android:textSize">@dimen/edit_hint_size</item>
     </style>
-    
+
 </resources>
