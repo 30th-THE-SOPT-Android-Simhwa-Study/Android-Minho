@@ -64,8 +64,8 @@ class FriendActivity : AppCompatActivity() {
     private fun selectFriend(friend: Friend) {
         friendViewModel.selectFriend(friend = friend)
         //이전 기능 포함
-        val intent = Intent(this@FriendActivity, FriendDetailActivity::class.java).apply {
-            putExtra("friend", friendViewModel.friend.value)
+        val intent = Intent(this@FriendActivity, FriendGithubActivity::class.java).apply {
+            putExtra("username", friendViewModel.friend.value?.name)
         }
         startActivity(intent)
     }

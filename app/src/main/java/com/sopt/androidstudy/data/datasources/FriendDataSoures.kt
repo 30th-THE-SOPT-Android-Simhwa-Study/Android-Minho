@@ -29,7 +29,7 @@ class FriendDataSources @Inject constructor(private val dao: FriendDAO) {
         dao.deleteAll()
     }
 
-    fun getAllFriends(): Flow<List<Friend>> = dao.getAllFriends()
+    fun getAllFriends(): LiveData<List<Friend>> = dao.getAllFriends()
 
     fun getMBTIFeatures(mbti: MBTI): List<MBTIFeatures>? {
 

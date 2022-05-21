@@ -1,5 +1,6 @@
 package com.sopt.androidstudy.data.repository
 
+import androidx.lifecycle.LiveData
 import com.sopt.androidstudy.data.datasources.FriendDataSources
 import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.types.MBTI
@@ -31,6 +32,6 @@ class FriendRepositoryImpl @Inject constructor(private val friendDataSources: Fr
         friendDataSources.getMBTIFeatures(mbti)
 
 
-    override fun getAllFriends(): Flow<List<Friend>> = friendDataSources.getAllFriends()
+    override fun getAllFriends(): LiveData<List<Friend>> = friendDataSources.getAllFriends()
 
 }

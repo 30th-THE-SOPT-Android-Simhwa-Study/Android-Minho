@@ -21,10 +21,12 @@ object BindingConversions {
     @JvmStatic
     @BindingAdapter("load")
     fun loadImage(view: ImageView, url: String) {
-        CoroutineScope(Dispatchers.Main).launch {
-            view.load(url) {
-                placeholder(R.drawable.ic_launcher_foreground)
-                transformations(CircleCropTransformation())
+        url.let {
+            CoroutineScope(Dispatchers.Main).launch {
+                view.load(url) {
+                    placeholder(R.drawable.ic_launcher_foreground)
+                    transformations(CircleCropTransformation())
+                }
             }
         }
     }

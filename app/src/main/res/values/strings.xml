@@ -8,6 +8,7 @@
     <string name="tv_password">8자리 이상의 영문자, 숫자, 특수 문자 조합으로 입력해주세요.</string>
     <string name="hint_email">이메일</string>
     <string name="hint_password">패스워드</string>
+    <string name="avatar_url">https://avatars.githubusercontent.com/u/90037701?v=4</string>
     <!-- MBTI -->
     <string name="istj1">책임감 강함</string>
     <string name="istj2">시간 약속 잘지킴</string>

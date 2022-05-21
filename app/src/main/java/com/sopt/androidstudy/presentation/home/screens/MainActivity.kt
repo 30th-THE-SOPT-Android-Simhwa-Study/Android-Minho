@@ -43,17 +43,17 @@ class MainActivity : AppCompatActivity() {
         displayReceiveData()
         val user = intent.getParcelableExtra<UserData>("userData")
         //user?.name?.let {
-            getList("younginc")
+            getList("KkamSonLee")
         //}
     }
 
     private fun getList(userName: String) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.stateFlow.collectLatest {
-                    /*viewModel.receiveData.value = it?.body()?.filter {
+                viewModel.stateFlow.collect {
+                    viewModel.receiveData.value = it?.body()?.filter {
                         it.type == "PushEvent"
-                    }*/
+                    }
                     Log.d("collect!!", it?.body().toString())
                 }
             }

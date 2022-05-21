@@ -1,5 +1,6 @@
 package com.sopt.androidstudy.data.model.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
@@ -18,6 +19,6 @@ interface FriendDAO {
     suspend fun deleteAll()
 
     @Query("SELECT * FROM friend_data_table")
-    fun getAllFriends(): Flow<List<Friend>>
+    fun getAllFriends(): LiveData<List<Friend>>
 
 }

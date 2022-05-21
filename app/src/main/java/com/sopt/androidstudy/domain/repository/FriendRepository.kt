@@ -15,7 +15,7 @@ interface FriendRepository {
 
     suspend fun deleteAll()
 
-    fun getAllFriends(): Flow<List<Friend>>
+    fun getAllFriends(): LiveData<List<Friend>>
 
     fun getMBTIFeatures(mbti: MBTI): List<MBTIFeatures>?
 }
