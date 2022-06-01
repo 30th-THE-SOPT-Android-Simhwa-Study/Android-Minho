@@ -51,10 +51,8 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.stateFlow.collect {
-                    viewModel.receiveData.value = it?.body()?.filter {
-                        it.type == "PushEvent"
-                    }
-                    Log.d("collect!!", it?.body().toString())
+                    viewModel.receiveData.value = it
+                    Log.d("collect!!", it.toString())
                 }
             }
         }

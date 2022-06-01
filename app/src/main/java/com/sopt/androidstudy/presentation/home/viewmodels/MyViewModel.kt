@@ -10,6 +10,7 @@ import com.sopt.androidstudy.data.remote.github.models.ResponseReceiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
@@ -25,9 +26,11 @@ class MyViewModel : ViewModel() {
     val stateFlow = flow {
         while (true) {
             val responseEvent = withContext(Dispatchers.IO) {
-                ServiceCreator.githubService.getReceiveEvents("KkamSonLee")
+                ServiceCreator.githubService.getReceiveEvents("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","KkamSonLee")
+            }.body()?.filter {
+                it.type == "PushEvent"
             }
-            Log.d("emit!!", responseEvent.body().toString())
+            Log.d("emit!!", responseEvent.toString())
             emit(responseEvent)
             delay(5000)
         }

@@ -21,11 +21,15 @@ class FriendGithubViewModel : ViewModel() {
     fun setUserName(name: String) {
         userName.value = name
     }
+
     val getUserData: Flow<Response<ResponseUser>> = flow {
         while (true) {
             if (!userName.value.isNullOrBlank()) {
                 val responseUser = withContext(Dispatchers.IO) {
-                    ServiceCreator.githubService.getUser(userName.value.toString())
+                    ServiceCreator.githubService.getUser(
+                        "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",
+                        userName.value.toString()
+                    )
                 }
                 emit(responseUser)
                 Log.d("user : emit!!", responseUser.body().toString())
@@ -38,7 +42,10 @@ class FriendGithubViewModel : ViewModel() {
         while (true) {
             if (!userName.value.isNullOrBlank()) {
                 val responseRepository = withContext(Dispatchers.IO) {
-                    ServiceCreator.githubService.getRepository(userName.value.toString())
+                    ServiceCreator.githubService.getRepository(
+                        "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",
+                        userName.value.toString()
+                    )
                 }
                 emit(responseRepository)
                 Log.d("repo : emit!!", responseRepository.body().toString())
@@ -50,7 +57,10 @@ class FriendGithubViewModel : ViewModel() {
         while (true) {
             if (!userName.value.isNullOrBlank()) {
                 val responseFollowing = withContext(Dispatchers.IO) {
-                    ServiceCreator.githubService.getFollowing(userName.value.toString())
+                    ServiceCreator.githubService.getFollowing(
+                        "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",
+                        userName.value.toString()
+                    )
                 }
                 emit(responseFollowing)
                 Log.d("follow : emit!!", responseFollowing.body().toString())
