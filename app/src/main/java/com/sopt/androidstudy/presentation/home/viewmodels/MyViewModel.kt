@@ -9,10 +9,7 @@ import com.sopt.androidstudy.data.remote.ServiceCreator
 import com.sopt.androidstudy.data.remote.github.models.ResponseReceiveEvent
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.withContext
 
 class MyViewModel : ViewModel() {
@@ -30,7 +27,6 @@ class MyViewModel : ViewModel() {
             }.body()?.filter {
                 it.type == "PushEvent"
             }
-            Log.d("emit!!", responseEvent.toString())
             emit(responseEvent)
             delay(5000)
         }

@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.repeatOnLifecycle
 import com.sopt.androidstudy.R
 import com.sopt.androidstudy.data.datasources.FriendDataSources
+import com.sopt.androidstudy.data.model.UserData
 import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.db.FriendDatabase
 import com.sopt.androidstudy.data.repository.FriendRepositoryImpl
@@ -31,7 +32,7 @@ class FriendActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //val user = intent.getParcelableExtra<UserData>("userData")
+        val user = intent.getParcelableExtra<UserData>("userData")
         //로그인시 내 계정 정보 받아오기. 아직은 안씀
         initBindingView()
         displayFriendsList()
@@ -44,7 +45,6 @@ class FriendActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         friendAdapter = FriendRecyclerViewAdapter(::selectFriend)
         initEvent()
-        //friendViewModel.friends.value friendAdapter.submitList(it)
         binding.mainRcv.adapter = friendAdapter
     }
 

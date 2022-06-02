@@ -43,16 +43,15 @@ class MainActivity : AppCompatActivity() {
         displayReceiveData()
         val user = intent.getParcelableExtra<UserData>("userData")
         //user?.name?.let {
-            getList("KkamSonLee")
+        getList("KkamSonLee")
         //}
     }
 
     private fun getList(userName: String) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.stateFlow.collect {
+                viewModel.stateFlow.collectLatest {
                     viewModel.receiveData.value = it
-                    Log.d("collect!!", it.toString())
                 }
             }
         }

@@ -2,6 +2,7 @@ package com.sopt.androidstudy.presentation.save.screens.fragment
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,7 +49,8 @@ class Repo : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 profileViewModel.getRepository.collect {
-                    adapter.submitList(it.body())
+                    Log.d("Repo - ", "collect!!")
+                    adapter.submitList(it)
                 }
             }
 

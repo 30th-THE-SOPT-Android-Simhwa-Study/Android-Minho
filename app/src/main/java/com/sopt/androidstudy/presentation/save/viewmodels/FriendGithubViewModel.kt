@@ -22,7 +22,7 @@ class FriendGithubViewModel : ViewModel() {
         userName.value = name
     }
 
-    val getUserData: Flow<Response<ResponseUser>> = flow {
+    val getUserData: StateFlow<ResponseUser?> = flow {
         while (true) {
             if (!userName.value.isNullOrBlank()) {
                 val responseUser = withContext(Dispatchers.IO) {
@@ -30,44 +30,43 @@ class FriendGithubViewModel : ViewModel() {
                         "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",
                         userName.value.toString()
                     )
+                }.body()
+                if (responseUser != null) {
+                    emit(responseUser)
                 }
-                emit(responseUser)
-                Log.d("user : emit!!", responseUser.body().toString())
+                Log.d("user : emit!!", responseUser.toString())
             }
-            delay(60000)
+            delay(2000)
         }
-    }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
-    val getRepository: Flow<Response<List<ResponseRepo>>> = flow {
-        while (true) {
-            if (!userName.value.isNullOrBlank()) {
-                val responseRepository = withContext(Dispatchers.IO) {
-                    ServiceCreator.githubService.getRepository(
-                        "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",
-                        userName.value.toString()
-                    )
-                }
+    val getRepository: StateFlow<List<ResponseRepo>?> = flow {
+        if (!userName.value.isNullOrBlank()) {
+            val responseRepository = withContext(Dispatchers.IO) {
+                ServiceCreator.githubService.getRepository(
+                    "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",
+                    userName.value.toString()
+                )
+            }.body()
+            if (responseRepository != null) {
                 emit(responseRepository)
-                Log.d("repo : emit!!", responseRepository.body().toString())
+                Log.d("repo : emit!!", responseRepository.toString())
             }
-            delay(60000)
         }
-    }
-    val getFollower: Flow<Response<List<ResponseFollowing>>> = flow {
-        while (true) {
-            if (!userName.value.isNullOrBlank()) {
-                val responseFollowing = withContext(Dispatchers.IO) {
-                    ServiceCreator.githubService.getFollowing(
-                        "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",
-                        userName.value.toString()
-                    )
-                }
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    val getFollower: Flow<List<ResponseFollowing>?> = flow {
+        if (!userName.value.isNullOrBlank()) {
+            val responseFollowing = withContext(Dispatchers.IO) {
+                ServiceCreator.githubService.getFollowing(
+                    "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",
+                    userName.value.toString()
+                )
+            }.body()
+            if (responseFollowing != null) {
                 emit(responseFollowing)
-                Log.d("follow : emit!!", responseFollowing.body().toString())
+                Log.d("follow : emit!!", responseFollowing.toString())
             }
-            delay(60000)
         }
-    }
-
-
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 }

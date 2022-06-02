@@ -25,7 +25,7 @@ class FriendGithubActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFriendGithubBinding
     private val myFragments =
-        listOf<Fragment>(Follwer(), Repo())
+        listOf(Follwer(), Repo())
     lateinit var user: String
     var isEnabled = true
     val friendGithubViewModel: FriendGithubViewModel by viewModels()
@@ -37,14 +37,15 @@ class FriendGithubActivity : AppCompatActivity() {
             friendGithubViewModel.setUserName(user)
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    friendGithubViewModel.getUserData.collect{
-                        binding.user = it.body()
+                    friendGithubViewModel.getUserData.collect {
+                        binding.user = it
                     }
                 }
             }
         }
         bindingView()
     }
+
     private fun bindingView() {
 
         binding.btnFollower.isEnabled = isEnabled

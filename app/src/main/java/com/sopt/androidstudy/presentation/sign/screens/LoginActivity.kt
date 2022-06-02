@@ -24,7 +24,7 @@ class LoginActivity : AppCompatActivity() {
         binding.loginviewmodel = myLoginViewModel
         myLoginViewModel.getIsClick().observe(this) {
             if (it) {
-                val intent = Intent(this, MainActivity::class.java).apply {
+                val intent = Intent(this, FriendActivity::class.java).apply {
                     putExtra(
                         "userData", UserData(
                             myLoginViewModel.getUserEmail().value,
