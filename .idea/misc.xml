@@ -3,24 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable-v24/selector_btn_stroke.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable-v24/selector_edit_stroke.xml" value="0.1" />
-        <entry key="app/src/main/res/drawable-v24/shape_border_selector_btn_radius_5.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/shape_bordor_radius_5.xml" value="0.3765" />
         <entry key="app/src/main/res/font/montserrat_family.xml" value="0.2140625" />
-        <entry key="app/src/main/res/layout/activity_friend_detail.xml" value="0.18489583333333334" />
-        <entry key="app/src/main/res/layout/activity_friend_github.xml" value="0.13802083333333334" />
+        <entry key="app/src/main/res/layout/activity_coroutine_example.xml" value="0.1796875" />
+        <entry key="app/src/main/res/layout/activity_coroutine_lotto.xml" value="0.3362613863376174" />
+        <entry key="app/src/main/res/layout/activity_friend_detail.xml" value="0.2265625" />
+        <entry key="app/src/main/res/layout/activity_heal_foo_me_home.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_heal_foo_me_main.xml" value="0.27708333333333335" />
         <entry key="app/src/main/res/layout/activity_login2.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_save.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_follwer.xml" value="0.13802083333333334" />
-        <entry key="app/src/main/res/layout/fragment_repo.xml" value="0.13802083333333334" />
-        <entry key="app/src/main/res/layout/item_event_list.xml" value="0.20909090909090908" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.121875" />
+        <entry key="app/src/main/res/layout/activity_save.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_work_manager.xml" value="0.20729166666666668" />
+        <entry key="app/src/main/res/layout/fragment_naver_map.xml" value="0.10208333333333333" />
         <entry key="app/src/main/res/layout/item_friend_recyclerview.xml" value="0.16770833333333332" />
-        <entry key="app/src/main/res/layout/item_repository_index.xml" value="0.13802083333333334" />
-        <entry key="app/src/main/res/layout/item_sample_list.xml" value="0.13802083333333334" />
-        <entry key="app/src/main/res/menu/menu_sample.xml" value="0.14270833333333333" />
-        <entry key="app/src/main/res/xml/network_security_config.xml" value="0.13020833333333334" />
       </map>
     </option>
   </component>

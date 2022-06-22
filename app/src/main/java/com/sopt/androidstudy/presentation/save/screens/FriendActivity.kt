@@ -6,23 +6,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.repeatOnLifecycle
 import com.sopt.androidstudy.R
-import com.sopt.androidstudy.data.datasources.FriendDataSources
 import com.sopt.androidstudy.data.model.UserData
 import com.sopt.androidstudy.data.model.db.Friend
-import com.sopt.androidstudy.data.model.db.FriendDatabase
-import com.sopt.androidstudy.data.repository.FriendRepositoryImpl
 import com.sopt.androidstudy.databinding.ActivitySaveBinding
 import com.sopt.androidstudy.presentation.save.adapter.FriendRecyclerViewAdapter
 import com.sopt.androidstudy.presentation.save.viewmodels.FriendViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FriendActivity : AppCompatActivity() {

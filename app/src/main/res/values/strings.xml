@@ -73,4 +73,6 @@
     <string name="enfp1">표정 밝음</string>
     <string name="enfp2">통찰력 있음</string>
     <string name="enfp3">언어표현 잘함</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
