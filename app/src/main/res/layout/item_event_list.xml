@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="event"
+            type="com.sopt.androidstudy.data.remote.github.models.ResponseReceiveEvent" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="16dp">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            load="@{event.actor.avatar_url}"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            app:layout_constraintBaseline_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:src="@drawable/ball_00" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{event.actor.login}"
+            android:textAppearance="@style/Widget.EditText.TextAppearance"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="내 이름" />
+
+        <ImageView
+            android:id="@+id/iv_organ"
+            load="@{event.org.avatar_url}"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+            tools:src="@drawable/ball_00" />
+
+        <TextView
+            android:id="@+id/tv_organ_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{event.org.login}"
+            android:textAppearance="@style/Widget.EditText.TextAppearance"
+            android:textSize="12sp"
+            android:layout_marginTop="45dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_organ"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
+            tools:text="organ이름" />
+
+        <TextView
+            android:id="@+id/tv_commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:lineHeight="15dp"
+            android:text="@{event.payload.commits.get(0).message}"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_organ"
+            tools:ignore="HardcodedText"
+            tools:text="커밋메세지" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

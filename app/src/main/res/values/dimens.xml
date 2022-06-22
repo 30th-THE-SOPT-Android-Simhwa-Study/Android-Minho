@@ -5,4 +5,12 @@
     <dimen name="logo_txt_size">20sp</dimen>
     <dimen name="layout_space">10dp</dimen>
     <dimen name="app_base_margin">16dp</dimen>
+
+    <dimen name="font_size_1">24sp</dimen>
+    <dimen name="font_size_2">20sp</dimen>
+    <dimen name="font_size_3">16sp</dimen>
+    <dimen name="font_size_4">14sp</dimen>
+    <dimen name="font_size_5">12sp</dimen>
+    <dimen name="app_base_space">20dp</dimen>
+    <dimen name="app_sub_space">16dp</dimen>
 </resources>

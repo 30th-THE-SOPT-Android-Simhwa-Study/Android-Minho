@@ -82,6 +82,5 @@
             app:layout_constraintTop_toBottomOf="@id/clear_all_or_delete_button"
             tools:listitem="@layout/item_friend_recyclerview" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
