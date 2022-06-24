@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.*
@@ -18,7 +19,9 @@ import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
 import com.naver.maps.map.util.FusedLocationSource
+import com.sopt.androidstudy.R
 import com.sopt.androidstudy.databinding.FragmentNaverMapBinding
+import com.sopt.androidstudy.presentation.healfoome.adapter.MenuListAdapter
 import com.sopt.androidstudy.presentation.healfoome.viewmodels.HealfooMeViewModel
 
 
@@ -27,6 +30,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
     val binding get() = _binding!!
     private lateinit var locationSource: FusedLocationSource
     private lateinit var naverMap: NaverMap
+    private lateinit var adapter:MenuListAdapter
     private lateinit var infoWindow: InfoWindow
     private val healfooMeViewModel: HealfooMeViewModel by activityViewModels<HealfooMeViewModel>()
     override fun onCreateView(
@@ -39,7 +43,9 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
         initNaverMapSettings()
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
-
+        adapter = MenuListAdapter(arrayListOf<Int>(R.drawable.ball_00,R.drawable.ball_01,R.drawable.ball_02))
+        binding.vpMenu.adapter = adapter
+        binding.vpMenu.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         bottomSheetBehavior.addBottomSheetCallback(object:BottomSheetBehavior.BottomSheetCallback(){
             override fun onStateChanged(bottomSheet: View, newState: Int) {
 
@@ -48,6 +54,7 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
 
             }
         })
+
         return binding.root
     }
 
@@ -77,11 +84,10 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     healfooMeViewModel.setSelectMarker(binding.etSearch.text.toString())
-
                     val cameraUpdate = healfooMeViewModel.getSelectMarker().value?.let {
                         CameraUpdate.scrollTo(it.position)
                     }
-                    cameraUpdate?.animate(CameraAnimation.Easing)
+                    cameraUpdate?.animate(CameraAnimation.Linear)
                     if (cameraUpdate != null) {
                         naverMap.moveCamera(cameraUpdate)
                     }

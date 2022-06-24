@@ -60,7 +60,7 @@
                 android:id="@+id/bottom_sheet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:behavior_hideable="true"
+                app:behavior_hideable="false"
                 app:behavior_peekHeight="130dp"
                 app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
@@ -78,7 +78,6 @@
                         android:paddingHorizontal="@dimen/app_base_space"
                         android:visibility="@{marker.selectMarker!=null?View.VISIBLE:View.GONE}">
 
-                        <!---->
 
                         <ImageView
                             android:id="@+id/imageView2"
@@ -162,15 +161,10 @@
                             android:layout_marginTop="@dimen/app_base_space"
                             android:text="메뉴" />
 
-                        <ImageView
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/vp_menu"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ball_00" />
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/ball_00" />
+                            android:layout_height="wrap_content" />
 
                         <TextView
                             style="@style/Widget.TitleTextView.Style"
