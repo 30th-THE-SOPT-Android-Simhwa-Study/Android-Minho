@@ -41,7 +41,6 @@
     </style>
 
 
-
     <style name="Widget.EditText.Style" parent="">
         <item name="android:background">@drawable/shape_bordor_radius_5</item>
         <item name="android:backgroundTint">@color/gray_100</item>
@@ -61,10 +60,20 @@
         <item name="android:layout_marginTop">5dp</item>
         <item name="android:textAppearance">@style/Widget.HelpTextView.TextAppearance</item>
     </style>
+
     <style name="Widget.HelpTextView.TextAppearance" parent="">
         <item name="android:textColor">@color/gray_500</item>
         <item name="android:fontFamily">@font/suit_r</item>
         <item name="android:textSize">@dimen/edit_hint_size</item>
     </style>
+
+    <style name="Theme.AndroidSturdy.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.AndroidSturdy.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.AndroidSturdy.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

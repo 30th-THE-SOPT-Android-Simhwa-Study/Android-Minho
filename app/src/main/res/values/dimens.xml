@@ -13,4 +13,7 @@
     <dimen name="font_size_5">12sp</dimen>
     <dimen name="app_base_space">20dp</dimen>
     <dimen name="app_sub_space">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>
