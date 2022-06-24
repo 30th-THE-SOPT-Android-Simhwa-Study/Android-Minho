@@ -22,6 +22,8 @@
         <entry key="app/src/main/res/layout/fragment_naver_map.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_scrolling.xml" value="0.15208333333333332" />
         <entry key="app/src/main/res/layout/item_friend_recyclerview.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/menu/menu_scrolling.xml" value="0.15364583333333334" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.163" />
       </map>
     </option>
   </component>

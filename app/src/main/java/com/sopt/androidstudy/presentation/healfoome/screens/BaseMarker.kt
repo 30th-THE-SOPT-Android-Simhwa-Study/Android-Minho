@@ -13,4 +13,8 @@ data class BaseMarker(
     val iconTintColor: Int = Color.GREEN,
     val tag: String,
     val captionText: String,
+    val restaurantName: String,
+    val mainMenu: String,
+    val isCalorie: Boolean,
+    val tipDescription: String
 ) : Serializable

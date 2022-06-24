@@ -29,14 +29,21 @@ class HealFooMeHomeActivity : AppCompatActivity() {
                     position = LatLng(37.5349, 127.1234),
                     icon = MarkerIcons.BLACK,
                     iconTintColor = Color.RED,
-                    captionText = "marker1",
-                    tag = "marker1"
+                    captionText = "샐러디",
+                    tag = "marker1",
+                    restaurantName = "샐러디",
+                    mainMenu = "아보카도 덮밥",
+                    isCalorie = true,
+                    tipDescription = "알아서 잘 드세요"
                 ),
-
                 BaseMarker(
                     position = LatLng(37.5349, 127.1230),
-                    captionText = "marker2",
-                    tag = "marker2"
+                    captionText = "살 빠지는 식당",
+                    tag = "살 빠지는 식당",
+                    restaurantName = "살 빠지는 식당",
+                    mainMenu = "보라색 카레",
+                    isCalorie = true,
+                    tipDescription = "이걸 시키고도 먹을 수 있을까?"
                 )
             )
         )

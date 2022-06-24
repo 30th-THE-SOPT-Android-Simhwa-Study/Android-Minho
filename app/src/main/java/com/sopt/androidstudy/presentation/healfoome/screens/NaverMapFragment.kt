@@ -2,15 +2,18 @@ package com.sopt.androidstudy.presentation.healfoome.screens
 
 import android.os.Bundle
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.naver.maps.map.LocationTrackingMode
-import com.naver.maps.map.NaverMap
-import com.naver.maps.map.OnMapReadyCallback
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.naver.maps.geometry.LatLng
+import com.naver.maps.map.*
 import com.naver.maps.map.overlay.InfoWindow
 import com.naver.maps.map.overlay.Marker
 import com.naver.maps.map.overlay.Overlay
@@ -32,9 +35,19 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentNaverMapBinding.inflate(inflater, container, false)
-        initNaverMapSettings()
         locationSource =
             FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
+        initNaverMapSettings()
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
+
+        bottomSheetBehavior.addBottomSheetCallback(object:BottomSheetBehavior.BottomSheetCallback(){
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+
+            }
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+
+            }
+        })
         return binding.root
     }
 
@@ -57,6 +70,26 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
 
     private fun initNaverMapSettings() {
         binding.myMap.getMapAsync(this)
+        binding.marker = healfooMeViewModel
+        binding.lifecycleOwner = this
+
+        binding.etSearch.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+            override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    healfooMeViewModel.setSelectMarker(binding.etSearch.text.toString())
+
+                    val cameraUpdate = healfooMeViewModel.getSelectMarker().value?.let {
+                        CameraUpdate.scrollTo(it.position)
+                    }
+                    cameraUpdate?.animate(CameraAnimation.Easing)
+                    if (cameraUpdate != null) {
+                        naverMap.moveCamera(cameraUpdate)
+                    }
+                    return true
+                }
+                return false
+            }
+        })
     }
 
     override fun onRequestPermissionsResult(
@@ -117,7 +150,10 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
     override fun onClick(p0: Overlay): Boolean {
         Log.d("MARKER!!!", p0.tag.toString())
         if (p0 is Marker) {
+            healfooMeViewModel.setSelectMarker(p0.tag.toString())
             infoWindow.open(p0)
+            val cameraUpdate = CameraUpdate.scrollTo(p0.position)
+            naverMap.moveCamera(cameraUpdate)
         }
         return true
     }
