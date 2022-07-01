@@ -64,7 +64,6 @@
                 app:behavior_peekHeight="130dp"
                 app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -165,6 +164,42 @@
                             android:id="@+id/vp_menu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
+
+                        <TextView
+                            style="@style/Widget.TitleTextView.Style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="연어 어쩌구 덮밥" />
+
+                        <TextView
+                            style="@style/Widget.TitleTextView.Style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="아보카도 어쩌구 덮밥" />
+
+                        <TextView
+                            style="@style/Widget.TitleTextView.Style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="풀떼기 어쩌구 덮밥" />
+
+                        <TextView
+                            style="@style/Widget.TitleTextView.Style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="연어 어쩌구 덮밥" />
+
+                        <TextView
+                            style="@style/Widget.TitleTextView.Style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="아보카도 어쩌구 덮밥" />
+
+                        <TextView
+                            style="@style/Widget.TitleTextView.Style"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="풀떼기 어쩌구 덮밥" />
 
                         <TextView
                             style="@style/Widget.TitleTextView.Style"

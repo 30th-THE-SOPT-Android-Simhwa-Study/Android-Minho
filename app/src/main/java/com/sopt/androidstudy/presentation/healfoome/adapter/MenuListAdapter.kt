@@ -11,8 +11,6 @@ import com.sopt.androidstudy.databinding.ItemMenuBinding
 
 class MenuListAdapter(private val myMenuList: ArrayList<Int>) :
     RecyclerView.Adapter<MenuListAdapter.ViewHolder>() {
-
-
     class ViewHolder(private val binding: ItemMenuBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(image: Int) {
             binding.ivMenu.setImageResource(image)

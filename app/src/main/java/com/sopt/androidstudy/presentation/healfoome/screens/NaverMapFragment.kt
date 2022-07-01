@@ -39,40 +39,23 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentNaverMapBinding.inflate(inflater, container, false)
-        locationSource =
-            FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
+        locationSource = FusedLocationSource(this, LOCATION_PERMISSION_REQUEST_CODE)
         initNaverMapSettings()
-        val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
-        adapter = MenuListAdapter(arrayListOf<Int>(R.drawable.ball_00,R.drawable.ball_01,R.drawable.ball_02))
-        binding.vpMenu.adapter = adapter
-        binding.vpMenu.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        bottomSheetBehavior.addBottomSheetCallback(object:BottomSheetBehavior.BottomSheetCallback(){
-            override fun onStateChanged(bottomSheet: View, newState: Int) {
-
-            }
-            override fun onSlide(bottomSheet: View, slideOffset: Float) {
-
-            }
-        })
-
+        initBottomSheetLayout()
         return binding.root
     }
 
-    private fun initMarker(healfooList: List<Marker>?) {
-        if (healfooList?.isNotEmpty() == true) {
-            healfooList.forEach { marker ->
-                marker.map = naverMap
-                marker.onClickListener = this
+    private fun initBottomSheetLayout() {
+       adapter = MenuListAdapter(arrayListOf<Int>(R.drawable.ball_00,R.drawable.ball_01,R.drawable.ball_02))
+        binding.vpMenu.adapter = adapter
+        binding.vpMenu.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.bottomSheet)
+        bottomSheetBehavior.addBottomSheetCallback(object:BottomSheetBehavior.BottomSheetCallback(){
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
             }
-        } else {
-            Log.d("Hi", "Null!")
-        }
-    }
-
-    private fun observingMarker() {
-        healfooMeViewModel.getHealfooList().observe(viewLifecycleOwner) {
-            initMarker(it)
-        }
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            }
+        })
     }
 
     private fun initNaverMapSettings() {
@@ -97,6 +80,66 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
             }
         })
     }
+    private fun initMarker(healfooList: List<Marker>?) {
+        if (healfooList?.isNotEmpty() == true) {
+            healfooList.forEach { marker ->
+                marker.map = naverMap
+                marker.onClickListener = this
+            }
+        } else {
+            Log.d("Hi", "Null!")
+        }
+    }
+
+    private fun observingMarker() {
+        healfooMeViewModel.getHealfooList().observe(viewLifecycleOwner) {
+            initMarker(it)
+        }
+    }
+
+
+    override fun onMapReady(p0: NaverMap) {
+        naverMap = p0
+        naverMap.locationSource = locationSource
+        naverMap.uiSettings.isLocationButtonEnabled = true
+        initMarker(healfooMeViewModel.getHealfooList().value)
+        infoWindow = InfoWindow()
+        infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(requireContext()) {
+            override fun getText(infoWindow: InfoWindow): CharSequence {
+                return infoWindow.marker?.tag as CharSequence? ?: ""
+            }
+        }
+        naverMap.setOnSymbolClickListener {
+            Log.d("Marker", it.toString())
+            true
+        }
+        observingMarker()
+    }
+    override fun onClick(p0: Overlay): Boolean {
+        Log.d("MARKER!!!", p0.tag.toString())
+        if (p0 is Marker) {
+            healfooMeViewModel.setSelectMarker(p0.tag.toString())
+            infoWindow.open(p0)
+            val cameraUpdate = CameraUpdate.scrollTo(p0.position)
+            naverMap.moveCamera(cameraUpdate)
+        }
+        return true
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.myMap.onCreate(savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.myMap.onDestroy()
+    }
+
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -116,51 +159,8 @@ class NaverMapFragment : Fragment(), OnMapReadyCallback, Overlay.OnClickListener
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 
-    override fun onMapReady(p0: NaverMap) {
-        naverMap = p0
-        naverMap.locationSource = locationSource
-        naverMap.uiSettings.isLocationButtonEnabled = true
-        initMarker(healfooMeViewModel.getHealfooList().value)
-        infoWindow = InfoWindow()
-        infoWindow.adapter = object : InfoWindow.DefaultTextAdapter(requireContext()) {
-            override fun getText(infoWindow: InfoWindow): CharSequence {
-                return infoWindow.marker?.tag as CharSequence? ?: ""
-            }
-        }
-        naverMap.setOnSymbolClickListener {
-            Log.d("Marker", it.toString())
-            true
-        }
-        observingMarker()
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        binding.myMap.onCreate(savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding.myMap.onDestroy()
-    }
-
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1000
     }
 
-    override fun onClick(p0: Overlay): Boolean {
-        Log.d("MARKER!!!", p0.tag.toString())
-        if (p0 is Marker) {
-            healfooMeViewModel.setSelectMarker(p0.tag.toString())
-            infoWindow.open(p0)
-            val cameraUpdate = CameraUpdate.scrollTo(p0.position)
-            naverMap.moveCamera(cameraUpdate)
-        }
-        return true
-    }
 }
