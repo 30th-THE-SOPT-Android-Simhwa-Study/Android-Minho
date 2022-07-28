@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.repeatOnLifecycle
 import com.sopt.androidstudy.R
 import com.sopt.androidstudy.data.datasources.FriendDataSources
+import com.sopt.androidstudy.data.model.UserData
 import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.db.FriendDatabase
 import com.sopt.androidstudy.data.repository.FriendRepositoryImpl
@@ -16,6 +19,10 @@ import com.sopt.androidstudy.databinding.ActivitySaveBinding
 import com.sopt.androidstudy.presentation.save.adapter.FriendRecyclerViewAdapter
 import com.sopt.androidstudy.presentation.save.viewmodels.FriendViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class FriendActivity : AppCompatActivity() {
@@ -25,7 +32,7 @@ class FriendActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //val user = intent.getParcelableExtra<UserData>("userData")
+        val user = intent.getParcelableExtra<UserData>("userData")
         //로그인시 내 계정 정보 받아오기. 아직은 안씀
         initBindingView()
         displayFriendsList()
@@ -38,7 +45,6 @@ class FriendActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         friendAdapter = FriendRecyclerViewAdapter(::selectFriend)
         initEvent()
-        friendViewModel.friends.value?.let { friendAdapter.submitList(it) }
         binding.mainRcv.adapter = friendAdapter
     }
 
@@ -58,8 +64,8 @@ class FriendActivity : AppCompatActivity() {
     private fun selectFriend(friend: Friend) {
         friendViewModel.selectFriend(friend = friend)
         //이전 기능 포함
-        val intent = Intent(this@FriendActivity, FriendDetailActivity::class.java).apply {
-            putExtra("friend", friendViewModel.friend.value)
+        val intent = Intent(this@FriendActivity, FriendGithubActivity::class.java).apply {
+            putExtra("username", friendViewModel.friend.value?.name)
         }
         startActivity(intent)
     }

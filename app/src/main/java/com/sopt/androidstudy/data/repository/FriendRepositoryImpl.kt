@@ -6,6 +6,7 @@ import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.data.model.types.MBTI
 import com.sopt.androidstudy.data.model.types.MBTIFeatures
 import com.sopt.androidstudy.domain.repository.FriendRepository
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 

@@ -14,6 +14,34 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!-- Button, Selector -->
+    <style name="Widget.SelectButton.Style" parent="">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/app_base_space</item>
+        <item name="android:background">@drawable/shape_border_selector_btn_radius_5</item>
+        <item name="android:textAppearance">@style/Widget.SelectButton.TextAppearance</item>
+    </style>
+
+    <style name="Widget.SelectButton.TextAppearance" parent="">
+        <item name="android:textColor">@color/selector_btn_text</item>
+        <item name="android:fontFamily">@font/noto_bold</item>
+        <item name="android:textSize">@dimen/font_size_3</item>
+    </style>
+
+    <!-- Just TextView Global Style -->
+    <style name="Widget.TitleTextView.Style" parent="">
+        <item name="android:textAppearance">@style/Widget.TitleTextView.TextAppearance</item>
+    </style>
+
+    <style name="Widget.TitleTextView.TextAppearance" parent="">
+        <item name="android:textColor">@color/gray_900</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:fontFamily">@font/noto_bold</item>
+        <item name="android:textSize">@dimen/font_size_4</item>
+    </style>
+
+
+
     <style name="Widget.EditText.Style" parent="">
         <item name="android:background">@drawable/shape_bordor_radius_5</item>
         <item name="android:backgroundTint">@color/gray_100</item>
