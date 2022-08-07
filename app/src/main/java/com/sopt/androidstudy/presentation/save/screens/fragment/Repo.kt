@@ -46,15 +46,14 @@ class Repo : Fragment() {
     }
 
     private fun displayFollowingList() {
-        lifecycleScope.launch {
+        /*lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 profileViewModel.getRepository.collect {
-                    Log.d("Repo - ", "collect!!")
                     adapter.submitList(it)
                 }
             }
 
-        }
+        }*/
     }
 
     override fun onDestroyView() {

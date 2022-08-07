@@ -27,7 +27,6 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="20dp"
-            load="@{user.avatar_url!=null?user.avatar_url:context.getText(R.string.avatar_url)}"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -42,11 +41,11 @@
             android:textSize="20sp" />
 
         <TextView
-
+            android:id="@+id/handler"
             style="@style/Widget.TitleTextView.Style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{user.location}"
+            tools:text="@{user.location}"
             android:textColor="@color/gray_400" />
 
         <TextView

@@ -51,14 +51,13 @@ class Follwer : Fragment() {
     }
 
     private fun displayFollowingList() {
-        lifecycleScope.launch {
+       /* lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 profileViewModel.getFollower.collect {
-                    Log.d("Follower - ", "collect!!")
                     adapter.submitList(it)
                 }
             }
 
-        }
+        }*/
     }
 }

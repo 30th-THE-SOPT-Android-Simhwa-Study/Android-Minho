@@ -8,6 +8,7 @@ import com.sopt.androidstudy.domain.repository.FriendRepository
 import com.sopt.androidstudy.presentation.util.Event
 import com.sopt.androidstudy.presentation.util.safeValueOf
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
