@@ -3,7 +3,6 @@ package com.sopt.androidstudy.presentation.save.viewmodels
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import com.sopt.androidstudy.data.remote.ServiceCreator
 import com.sopt.androidstudy.data.remote.github.models.ResponseFollowing
@@ -12,8 +11,7 @@ import com.sopt.androidstudy.data.remote.github.models.ResponseUser
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.flow.stateIn
-import retrofit2.Call
-import retrofit2.Response
+import kotlin.concurrent.thread
 
 class FriendGithubViewModel : ViewModel() {
     private val userName = MutableLiveData<String>()
@@ -33,13 +31,15 @@ class FriendGithubViewModel : ViewModel() {
                 }.body()
                 if (responseUser != null) {
                     emit(responseUser)
+                    userData()
                 }
                 Log.d("user : emit!!", responseUser.toString())
             }
-            delay(2000)
+            delay(30000)
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
+    fun userData(): String? = getUserData.value?.avatar_url
     val getRepository: StateFlow<List<ResponseRepo>?> = flow {
         if (!userName.value.isNullOrBlank()) {
             val responseRepository = withContext(Dispatchers.IO) {
