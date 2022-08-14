@@ -126,14 +126,15 @@ class FriendGithubActivity : AppCompatActivity() {
     inner class MyHandler : Handler(Looper.getMainLooper()) {
         override fun handleMessage(msg: Message) {
             val bundle = msg.data
-            if (msg.what == COUNT_WHAT) {
-                val count = bundle.getInt("count")
-                binding.mbti.text = count.toString()
-            } else if (msg.what == IMAGE_WHAT) {
-                val stringBitmap = bundle.getString("bitmap")
-                stringBitmap?.let {
-                    binding.imageView.post {
-                        binding.imageView.setImageBitmap(convertBitmap.stringToBitmap(it))
+            when (msg.what) {
+                COUNT_WHAT -> {
+                    val count = bundle.getInt("count")
+                    binding.count.text = count.toString()
+                }
+                IMAGE_WHAT -> {
+                    val stringBitmap = bundle.getString("bitmap") ?: return
+                    binding.profileImage.post {
+                        binding.profileImage.setImageBitmap(ConvertBitmap().stringToBitmap(stringBitmap))
                     }
                 }
             }
