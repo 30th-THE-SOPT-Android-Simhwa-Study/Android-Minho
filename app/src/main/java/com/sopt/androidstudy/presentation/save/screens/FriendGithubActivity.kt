@@ -87,11 +87,12 @@ class FriendGithubActivity : AppCompatActivity() {
         }
         bindingView()
         friendGithubViewModel.selectUser.observe(this) {
-            val message = myThreadHandler.obtainMessage()
             val bundle = Bundle()
             bundle.putString("string", it.avatar_url)
-            message.data = bundle
-            message.what = IMAGE_WHAT
+            val message = myThreadHandler.obtainMessage().apply {
+                        data = bundle
+                        what = IMAGE_WHAT
+            }
             myThreadHandler.sendMessage(message)
         }
     }
