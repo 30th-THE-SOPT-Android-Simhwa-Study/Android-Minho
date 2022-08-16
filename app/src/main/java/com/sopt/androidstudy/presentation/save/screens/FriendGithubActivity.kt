@@ -76,7 +76,6 @@ class FriendGithubActivity : AppCompatActivity() {
         binding.imageView.setOnClickListener {
             if (countThread.isAlive) {
                 i = 0
-                Log.d("is Alive", countThread.toString())
                 countThread.interrupt()
                 if (!countThread.isAlive) {
                     countThread.start()
@@ -133,8 +132,8 @@ class FriendGithubActivity : AppCompatActivity() {
                 }
                 IMAGE_WHAT -> {
                     val stringBitmap = bundle.getString("bitmap") ?: return
-                    binding.profileImage.post {
-                        binding.profileImage.setImageBitmap(ConvertBitmap().stringToBitmap(stringBitmap))
+                    binding.imageView.post {
+                        binding.imageView.setImageBitmap(ConvertBitmap.stringToBitmap(stringBitmap))
                     }
                 }
             }
@@ -147,13 +146,13 @@ class FriendGithubActivity : AppCompatActivity() {
             if (msg.what == IMAGE_WHAT) {
                 val stringBitmap = bundle.getString("string")
                 val bitmap =
-                    stringBitmap?.let { convertBitmap.getBitmapFromURL(it) }
+                    stringBitmap?.let { ConvertBitmap.getBitmapFromURL(it) }
                 stringBitmap?.let {
+                    SystemClock.sleep(1000)
                     binding.imageView.post {
                         binding.imageView.setImageBitmap(bitmap)
                     }
                 }
-                SystemClock.sleep(1000)
             }
         }
     }
@@ -200,7 +199,7 @@ class FriendGithubActivity : AppCompatActivity() {
     }
 }
 
-object convertBitmap {
+object ConvertBitmap {
     fun getBitmapFromURL(src: String): Bitmap? {
         return try {
             val url = URL(src)

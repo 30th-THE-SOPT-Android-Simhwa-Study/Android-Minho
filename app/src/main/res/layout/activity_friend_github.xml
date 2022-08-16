@@ -53,7 +53,7 @@
                 tools:text="@{user.location}" />
 
             <TextView
-                android:id="@+id/mbti"
+                android:id="@+id/count"
                 style="@style/Widget.TitleTextView.Style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
