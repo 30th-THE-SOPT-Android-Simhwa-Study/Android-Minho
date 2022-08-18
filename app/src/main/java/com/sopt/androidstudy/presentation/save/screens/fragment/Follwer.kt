@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sopt.androidstudy.data.remote.github.models.ResponseFollowing
 import com.sopt.androidstudy.databinding.FragmentFollwerBinding
 import com.sopt.androidstudy.presentation.save.viewmodels.FriendGithubViewModel
 import kotlinx.coroutines.launch
@@ -34,7 +35,7 @@ class Follwer : Fragment() {
     }
 
     private fun bindingView() {
-        adapter = FollowerAdapter()
+        adapter = FollowerAdapter { profileViewModel.selectFollower(it) }
         binding.recyclerFollower.addItemDecoration(
             DividerItemDecoration(
                 context,
@@ -54,11 +55,9 @@ class Follwer : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 profileViewModel.getFollower.collect {
-                    Log.d("Follower - ", "collect!!")
                     adapter.submitList(it)
                 }
             }
-
         }
     }
 }
