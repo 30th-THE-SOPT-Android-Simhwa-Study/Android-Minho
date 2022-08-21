@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:name=".MyApplication"
@@ -15,14 +18,10 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".presentation.coroutine.WorkManagerActivity"
-            android:exported="true" >
-
-
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".presentation.save.screens.FriendGithubActivity"
-            android:exported="true" >
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".presentation.coroutine.CoroutineLottoActivity"
             android:exported="false" />
@@ -34,21 +33,32 @@
             android:exported="false" />
         <activity
             android:name=".presentation.save.screens.FriendActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".presentation.sign.screens.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize"></activity>
         <activity
             android:name=".presentation.home.screens.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
+        <activity
+            android:enabled="true"
+            android:name=".presentation.broad.BroadcastPracticeActivity"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".SMSReceiver"
+            android:enabled="true"
+            android:exported="true">
+        </receiver>
+
+
+
     </application>
 
 </manifest>
