@@ -15,18 +15,20 @@ class SMSReceiver : BroadcastReceiver() {
             val bundle = intent.extras
             val message = parseMessage(bundle)
             if (message.isNotEmpty()) {
-                val contents =
-                    message[0]?.originatingAddress!! + " " + message[0]?.messageBody.toString()
-                sendToActivity(context, contents)
+                sendToActivity(
+                    context,
+                    message[0]?.originatingAddress!!,
+                    message[0]?.messageBody.toString()
+                )
             }
         }
     }
 
-    private fun sendToActivity(context: Context?, str: String) {
+    private fun sendToActivity(context: Context?, phoneNumber: String, message: String) {
         val intent = Intent(context, BroadcastPracticeActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        intent.putExtra("data", str)
-        Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
+        intent.putExtra("phoneNumber", phoneNumber)
+        intent.putExtra("message", message)
         context?.startActivity(intent)
     }
 
