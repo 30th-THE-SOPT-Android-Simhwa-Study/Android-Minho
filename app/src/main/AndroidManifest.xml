@@ -18,10 +18,10 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".presentation.coroutine.WorkManagerActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.save.screens.FriendGithubActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.coroutine.CoroutineLottoActivity"
             android:exported="false" />
@@ -33,11 +33,11 @@
             android:exported="false" />
         <activity
             android:name=".presentation.save.screens.FriendActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.sign.screens.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".presentation.home.screens.MainActivity"
             android:exported="false" />
@@ -54,7 +54,12 @@
 
         <receiver android:name=".SMSReceiver"
             android:enabled="true"
-            android:exported="true">
+            android:exported="true"
+            android:permission="android.permission.RECEIVE_SMS">
+            <intent-filter>
+                <action android:name="com.sopt.androidstudy"/>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
         </receiver>
 
 
