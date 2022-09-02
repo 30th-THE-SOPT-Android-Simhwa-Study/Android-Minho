@@ -16,8 +16,9 @@ import com.sopt.androidstudy.databinding.ActivityBroadcastPracticeBinding
 
 class BroadcastPracticeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBroadcastPracticeBinding
-    private lateinit var br: SMSReceiver
-    private lateinit var filter: IntentFilter
+
+    /*private lateinit var smsBroadCastReceiver: SMSReceiver
+    private lateinit var smsFilter: IntentFilter*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBroadcastPracticeBinding.inflate(layoutInflater)
@@ -35,31 +36,21 @@ class BroadcastPracticeActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, permissions, 1)
         }
     }
-    override fun onResume() {
-        super.onResume()
-    }
-
+/* 동적 리시버 사용 안함
     override fun onStart() {
         super.onStart()
-        br = SMSReceiver()
-        filter = IntentFilter().apply {
-            //addAction("org.android.androidsubeen")
-            addAction("com.sopt.androidsturdy")
+        smsBroadCastReceiver = SMSReceiver()
+        smsFilter = IntentFilter().apply {
             addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)
             priority = IntentFilter.SYSTEM_HIGH_PRIORITY
         }
-        registerReceiver(br, filter)
-    }
-
-    override fun onPause() {
-        Log.d("onPause", "Call")
-        super.onPause()
+        registerReceiver(smsBroadCastReceiver, smsFilter)
     }
 
     override fun onStop() {
         super.onStop()
-        unregisterReceiver(br)
-    }
+        unregisterReceiver(smsBroadCastReceiver)
+    }*/
 
     //받은 문자 - 문자열 set
     private fun processedIntent(intent: Intent?) {
