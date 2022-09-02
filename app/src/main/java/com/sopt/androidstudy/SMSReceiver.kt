@@ -6,18 +6,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.telephony.SmsMessage
 import android.util.Log
+import android.widget.Toast
 import com.sopt.androidstudy.presentation.broad.BroadcastPracticeActivity
 
-class SMSReceiver:BroadcastReceiver() {
+class SMSReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if ("android.provider.Telephony.SMS_RECEIVED" == intent?.action) {
             val bundle = intent.extras
             val message = parseMessage(bundle)
-            Log.d("MeessageRRRRR", message[0].toString())
-
             if (message.isNotEmpty()) {
-                val contents = message[0]?.messageBody.toString()
-                //Log.e("contents", contents)
+                val contents =
+                    message[0]?.originatingAddress!! + " " + message[0]?.messageBody.toString()
                 sendToActivity(context, contents)
             }
         }
@@ -27,6 +26,7 @@ class SMSReceiver:BroadcastReceiver() {
         val intent = Intent(context, BroadcastPracticeActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.putExtra("data", str)
+        Toast.makeText(context, str, Toast.LENGTH_SHORT).show()
         context?.startActivity(intent)
     }
 
