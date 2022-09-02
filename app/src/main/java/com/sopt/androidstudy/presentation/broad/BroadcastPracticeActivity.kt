@@ -55,7 +55,11 @@ class BroadcastPracticeActivity : AppCompatActivity() {
 
     //받은 문자 - 문자열 set
     private fun processedIntent(intent: Intent?) {
-        val (phoneNumber, message) = (intent?.getStringExtra("data") ?: " ").split(" ")
+        val phoneNumber = intent?.getStringExtra("phoneNumber") ?: ""
+        var message = intent?.getStringExtra("message") ?: ""
+        if(intent?.getIntExtra("flag",0) == 1){
+            message = message.replace("[^0-9]".toRegex(),"")
+        }
         with(binding) {
             etContent.setText(message)
             etPhone.setText(phoneNumber)
@@ -77,7 +81,7 @@ class BroadcastPracticeActivity : AppCompatActivity() {
 
     //앱이 종료되지 않은 상태에서 메시지를 받을경우 Receiver 에서 startActivity에 의해 onNewIntent가 실행됨.
     override fun onNewIntent(intent: Intent) {
-        Log.d("Message New", intent.getStringExtra("data").toString())
+        intent.putExtra("flag", 1)
         processedIntent(intent)
         super.onNewIntent(intent)
     }
