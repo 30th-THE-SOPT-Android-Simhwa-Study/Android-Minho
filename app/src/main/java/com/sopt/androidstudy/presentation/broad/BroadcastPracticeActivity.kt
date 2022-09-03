@@ -16,8 +16,6 @@ import com.sopt.androidstudy.databinding.ActivityBroadcastPracticeBinding
 class BroadcastPracticeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityBroadcastPracticeBinding
 
-    /*private lateinit var smsBroadCastReceiver: SMSReceiver
-    private lateinit var smsFilter: IntentFilter*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBroadcastPracticeBinding.inflate(layoutInflater)
@@ -37,28 +35,13 @@ class BroadcastPracticeActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this, permissions, 1)
         }
     }
-/* 동적 리시버 사용 안함
-    override fun onStart() {
-        super.onStart()
-        smsBroadCastReceiver = SMSReceiver()
-        smsFilter = IntentFilter().apply {
-            addAction(Telephony.Sms.Intents.SMS_RECEIVED_ACTION)
-            priority = IntentFilter.SYSTEM_HIGH_PRIORITY
-        }
-        registerReceiver(smsBroadCastReceiver, smsFilter)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        unregisterReceiver(smsBroadCastReceiver)
-    }*/
 
     //받은 문자 - 문자열 set
     private fun processedIntent(intent: Intent?) {
         val phoneNumber = intent?.getStringExtra("phoneNumber") ?: ""
         var message = intent?.getStringExtra("message") ?: ""
-        if(intent?.getIntExtra("flag",0) == 1){
-            message = message.replace("[^0-9]".toRegex(),"")
+        if (intent?.getIntExtra("flag", 0) == 1) {
+            message = message.replace("[^0-9]".toRegex(), "")
         }
         with(binding) {
             etContent.setText(message)
@@ -66,7 +49,7 @@ class BroadcastPracticeActivity : AppCompatActivity() {
         }
     }
 
-    private fun clickEvent() {
+    private fun clickEvent() {//SmsManager 사용
         binding.btnSend.setOnClickListener {
             val smsManager: SmsManager = SmsManager.getDefault()
             smsManager.sendTextMessage(
@@ -81,7 +64,7 @@ class BroadcastPracticeActivity : AppCompatActivity() {
 
     //앱이 종료되지 않은 상태에서 메시지를 받을경우 Receiver 에서 startActivity에 의해 onNewIntent가 실행됨.
     override fun onNewIntent(intent: Intent) {
-        intent.putExtra("flag", 1)
+        intent.putExtra("flag", 1) //앱이 켜져 있을 때만 flag 설정하여 Regex() 사용하게 함, 근데 어차피 꺼져 있으면 안 켜지긴함
         processedIntent(intent)
         super.onNewIntent(intent)
     }
