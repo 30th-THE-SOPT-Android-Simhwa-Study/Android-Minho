@@ -128,7 +128,7 @@ class FriendGithubActivity : AppCompatActivity() {
             when (msg.what) {
                 COUNT_WHAT -> {
                     val count = bundle.getInt("count")
-                    binding.count.text = count.toString()
+                    binding.mbti.text = count.toString()
                 }
                 IMAGE_WHAT -> {
                     val stringBitmap = bundle.getString("bitmap") ?: return
