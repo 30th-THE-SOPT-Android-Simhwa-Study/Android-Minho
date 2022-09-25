@@ -13,21 +13,20 @@ import com.sopt.androidstudy.data.model.db.Friend
 import com.sopt.androidstudy.databinding.ActivitySaveBinding
 import com.sopt.androidstudy.presentation.save.adapter.FriendRecyclerViewAdapter
 import com.sopt.androidstudy.presentation.save.viewmodels.FriendViewModel
-import com.sopt.androidstudy.presentation.sign.screens.BindingConversions
 import dagger.hilt.android.AndroidEntryPoint
-import io.socket.client.Socket.EVENT_CONNECT_ERROR
+import io.socket.client.IO
+import io.socket.client.Socket
+import io.socket.client.Socket.*
 import io.socket.emitter.Emitter
 import io.socket.engineio.client.EngineIOException
-import java.io.ObjectInputStream
-import java.io.ObjectOutputStream
-import java.net.Socket
+import java.net.MalformedURLException
 
 @AndroidEntryPoint
 class FriendActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySaveBinding
     private val friendViewModel: FriendViewModel by viewModels()
     private lateinit var friendAdapter: FriendRecyclerViewAdapter
-
+    private lateinit var socket: Socket
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val user = intent.getParcelableExtra<UserData>("userData")
@@ -43,32 +42,34 @@ class FriendActivity : AppCompatActivity() {
         binding.myViewModel = friendViewModel
         binding.lifecycleOwner = this
         friendAdapter = FriendRecyclerViewAdapter(::selectFriend)
-        //val socket = BindingConversions.get()
+        try {
+            socket = IO.socket("http://13.125.232.150:3000")
 
-        /*socket.on("lightOn", emitOn)
-        socket.on("lightOff", emitOn)
-        socket.on(io.socket.client.Socket.EVENT_CONNECT) {
-            // 소켓 서버에 연결이 성공하면 호출됩니다.
+
+        }catch (e: MalformedURLException){
+            e.printStackTrace()
+        }
+        socket.on(EVENT_CONNECT) {
             Log.i("Socket", "Connect")
-        }.on(io.socket.client.Socket.EVENT_DISCONNECT) { args ->
-            // 소켓 서버 연결이 끊어질 경우에 호출됩니다.
+        }.on(EVENT_DISCONNECT) { args ->
             Log.i("Socket", "Disconnet: ${args[0]}")
         }.on(EVENT_CONNECT_ERROR) { args ->
-            // 소켓 서버 연결 시 오류가 발생할 경우에 호출됩니다.
             var errorMessage = ""
             if (args[0] is EngineIOException) {
-                errorMessage = "code: ${args[0].toString()}"
+                errorMessage = "code: ${args[0]}"
             }
             Log.i("Socket", "Connect Error: $errorMessage")
-        }*/
-        //socket.connect()
+        }
+        socket.connect()
         initEvent()
         binding.mainRcv.adapter = friendAdapter
     }
+
     val emitOn = Emitter.Listener {
         Log.d("why?", it.toString())
         binding.mbtiText.text = it[0].toString()
     }
+
     private fun initEvent() {
         friendViewModel.showToast.observe(this) {
             it.getContentIfNotHandled()?.let {
@@ -114,4 +115,9 @@ class FriendActivity : AppCompatActivity() {
             friendAdapter.submitList(it)
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+        socket.disconnect()
+    }
+
 }
