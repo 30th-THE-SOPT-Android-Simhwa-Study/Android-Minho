@@ -1,4 +1,4 @@
-package com.sopt.androidstudy.presentation.chating
+package com.sopt.androidstudy.presentation.chatting
 
 import com.sopt.androidstudy.presentation.base.BaseActivity
 import com.sopt.androidstudy.R

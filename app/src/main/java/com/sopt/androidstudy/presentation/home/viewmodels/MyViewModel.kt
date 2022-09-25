@@ -20,7 +20,7 @@ class MyViewModel : ViewModel() {
         receiveData.value = data
     }
 
-    val stateFlow = flow {
+    /*val stateFlow = flow {
         while (true) {
             val responseEvent = withContext(Dispatchers.IO) {
                 ServiceCreator.githubService.getReceiveEvents("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","KkamSonLee")
@@ -32,5 +32,5 @@ class MyViewModel : ViewModel() {
         }
     }.stateIn(
         viewModelScope, SharingStarted.WhileSubscribed(5000), null
-    )
+    )*/
 }
