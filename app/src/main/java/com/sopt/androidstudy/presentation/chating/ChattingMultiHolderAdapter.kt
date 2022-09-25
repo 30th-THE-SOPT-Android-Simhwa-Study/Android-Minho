@@ -10,7 +10,7 @@ import com.sopt.androidstudy.databinding.ItemLeftMessageBinding
 import com.sopt.androidstudy.databinding.ItemRightMessageBinding
 import com.sopt.androidstudy.presentation.model.chating.Chat
 
-class ChatingMultiHolderAdapter :
+class ChattingMultiHolderAdapter :
     ListAdapter<Chat, RecyclerView.ViewHolder>(ChatDiffCallBack) {
 
     class FromViewHolder(val binding: ItemLeftMessageBinding) :
