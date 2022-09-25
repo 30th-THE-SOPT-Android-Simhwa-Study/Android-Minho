@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="toData"
+            type="com.sopt.androidstudy.presentation.model.chating.Chat" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -16,6 +23,7 @@
             android:fontFamily="@font/suit_r"
             android:padding="16dp"
             android:textColor="@color/white"
+            android:text="@{toData.content}"
             android:textSize="14dp"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="좋은 하루 보내세요 :)" />
@@ -28,6 +36,7 @@
             android:fontFamily="@font/suit_r"
             android:textColor="#888888"
             android:textSize="12dp"
+            android:text="@{toData.createAt}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/content"
             tools:text="오전 7:00" />
