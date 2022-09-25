@@ -18,8 +18,13 @@
         android:theme="@style/Theme.AndroidSturdy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.chating.SocketChatingActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".presentation.coroutine.WorkManagerActivity"
             android:exported="true" />
+
         <service
             android:name=".MusicPlayerService"
             android:enabled="true"
@@ -45,6 +50,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -58,9 +64,7 @@
         <activity
             android:name=".presentation.broad.BroadcastPracticeActivity"
             android:enabled="true"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
 
         <receiver
             android:name=".SMSReceiver"
@@ -72,7 +76,6 @@
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
