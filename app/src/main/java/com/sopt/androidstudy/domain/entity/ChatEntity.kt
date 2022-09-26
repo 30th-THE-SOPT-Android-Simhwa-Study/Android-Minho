@@ -1,5 +1,5 @@
 package com.sopt.androidstudy.domain.entity
 
-import java.util.Date
+import java.time.LocalDate
 
-data class ChatEntity(val messageId:Int, val send:Boolean, val createAt:Date, val content:String)
+data class ChatEntity(val messageId:Int, val send:Boolean, val createAt:LocalDate, val content:String)

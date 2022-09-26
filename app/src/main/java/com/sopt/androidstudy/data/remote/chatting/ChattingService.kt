@@ -5,7 +5,7 @@ import com.sopt.androidstudy.data.util.BaseResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface ChatingService {
+interface ChattingService {
     @GET("/{roomId}")
     suspend fun getChattingList(
         @Path("roomId") roomId:Int

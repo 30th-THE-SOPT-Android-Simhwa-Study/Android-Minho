@@ -1,5 +1,6 @@
 package com.sopt.androidstudy.domain.di
 
+import com.sopt.androidstudy.data.remote.chatting.ChattingService
 import com.sopt.androidstudy.data.remote.github.GithubService
 import dagger.Module
 import dagger.Provides
@@ -27,4 +28,8 @@ object ServiceModule {
     fun provideGithubService(retrofit: Retrofit): GithubService =
         retrofit.create(GithubService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideChattingService(retrofit: Retrofit): ChattingService =
+        retrofit.create(ChattingService::class.java)
 }
