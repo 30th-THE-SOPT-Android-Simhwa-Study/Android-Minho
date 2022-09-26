@@ -64,10 +64,10 @@ class FriendGithubActivity : AppCompatActivity() {
             friendGithubViewModel.setUserName(user)
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    friendGithubViewModel.getUserData.collect {
+                    /*friendGithubViewModel.getUserData.collect {
                         Log.d("Collect!!", it.toString())
                         binding.user = it
-                    }
+                    }*/
                 }
             }
         }

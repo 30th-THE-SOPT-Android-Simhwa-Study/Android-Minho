@@ -50,9 +50,9 @@ class MainActivity : AppCompatActivity() {
     private fun getList(userName: String) {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.stateFlow.collectLatest {
+                /*viewModel.stateFlow.collectLatest {
                     viewModel.receiveData.value = it
-                }
+                }*/
             }
         }
     }
