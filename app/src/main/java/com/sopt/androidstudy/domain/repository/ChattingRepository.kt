@@ -4,5 +4,5 @@ import com.sopt.androidstudy.domain.entity.ChatEntity
 import kotlinx.coroutines.flow.Flow
 
 interface ChattingRepository {
-    suspend fun getChattingList(roomId:Int): Flow<List<ChatEntity>>
+    fun getChattingList(roomId:String): Flow<List<ChatEntity>>
 }
