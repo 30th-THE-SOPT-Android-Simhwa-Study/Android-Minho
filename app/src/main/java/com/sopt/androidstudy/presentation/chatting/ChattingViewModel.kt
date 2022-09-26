@@ -13,15 +13,10 @@ import javax.inject.Inject
 class ChattingViewModel @Inject constructor(private val useCase: WhenEnterChattingRoom) :
     ViewModel() {
 
-    val roomId = MutableStateFlow("-1")
-    private val _chattingList = useCase.getAllChattingList(roomId.value)
+    val chattingList = useCase.getAllChattingList("57")
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000),
             ApiResult.Idle(null)
         )
-
-    init {
-        roomId.value = "57"
-    }
 }
