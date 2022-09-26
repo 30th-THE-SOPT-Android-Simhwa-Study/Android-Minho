@@ -8,7 +8,12 @@ import java.time.OffsetDateTime
 @Suppress("UNCHECKED_CAST")
 class ChattingMapper : BaseMapper<List<ChatDto>, List<ChatEntity>> {
     override fun map(from: List<ChatDto>): List<ChatEntity> =
-        (from.map {
-            OffsetDateTime.parse(it.createAt)
-        } as List<ChatEntity>)
+        from.map {
+            ChatEntity(
+                it.messageId,
+                it.send,
+                OffsetDateTime.parse(it.createdAt ?: "2022-04-26T11:01:28.003Z"),
+                it.content
+            )
+        }
 }

@@ -10,11 +10,13 @@ import java.time.temporal.ChronoUnit
 class ChattingListASCMapper : BaseMapper<List<ChatEntity>, List<Chat>> {
     override fun map(from: List<ChatEntity>): List<Chat> =
         (from.sortedBy { it.messageId }.map {
-            (if (it.createAt.hour / 12 == 0) "오전 " else "오후 ") + it.createAt.truncatedTo(ChronoUnit.SECONDS)
-                .format(
-                    DateTimeFormatter.ISO_TIME
-                ).substring(0, 5)
-        } as List<Chat>)
-
-
+            Chat(
+                it.messageId,
+                it.send,
+                ((if (it.createdAt.hour / 12 == 0) "오전 " else "오후 ")
+                        + it.createdAt.hour % 12 + ":"
+                        + it.createdAt.minute),
+                it.content
+            )
+        })
 }
