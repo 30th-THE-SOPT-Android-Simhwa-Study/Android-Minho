@@ -1,4 +1,4 @@
-package com.sopt.androidstudy.presentation.chating
+package com.sopt.androidstudy.presentation.chatting
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

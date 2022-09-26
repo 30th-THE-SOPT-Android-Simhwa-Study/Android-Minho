@@ -1,11 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.chatting.SocketChattingActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:clipToPadding="false"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:padding="16dp"
+            app:layout_constraintBottom_toTopOf="@id/message_input_container"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_right_message" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/message_input_container"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <EditText
+                android:background="@drawable/shape_border_radius_16"
+                android:backgroundTint="@color/gray_100"
+                android:fontFamily="@font/suit_r"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginVertical="6dp"
+                android:layout_width="0dp"
+                android:maxHeight="96dp"
+                android:minHeight="48dp"
+                android:paddingHorizontal="10dp"
+                android:textColor="#292929"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/send"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                style="@style/Widget.Button.Style"
+                android:id="@+id/send"
+                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:src="@drawable/ic_send"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -16,7 +16,7 @@
 
         <TextView
             android:id="@+id/content"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_border_radius_16"
             android:backgroundTint="#EBEBEB"
@@ -25,6 +25,7 @@
             android:text="@{fromData.content}"
             android:textColor="#101010"
             android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="좋은 하루 보내세요 :)" />
 

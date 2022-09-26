@@ -16,15 +16,16 @@
 
         <TextView
             android:id="@+id/content"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_border_radius_16"
             android:backgroundTint="#101010"
             android:fontFamily="@font/suit_r"
             android:padding="16dp"
-            android:textColor="@color/white"
             android:text="@{toData.content}"
+            android:textColor="@color/white"
             android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="좋은 하루 보내세요 :)" />
 
@@ -34,9 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/suit_r"
+            android:text="@{toData.createAt}"
             android:textColor="#888888"
             android:textSize="12dp"
-            android:text="@{toData.createAt}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/content"
             tools:text="오전 7:00" />
