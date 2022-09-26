@@ -4,32 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:clipToPadding="false"
-            android:layout_height="0dp"
+            android:id="@+id/rc_chatting_list"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:orientation="vertical"
             android:padding="16dp"
+            android:transcriptMode="alwaysScroll"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/message_input_container"
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_right_message" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/message_input_container"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="6dp"
+                android:layout_marginStart="16dp"
                 android:background="@drawable/shape_border_radius_16"
                 android:backgroundTint="@color/gray_100"
                 android:fontFamily="@font/suit_r"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginVertical="6dp"
-                android:layout_width="0dp"
                 android:maxHeight="96dp"
                 android:minHeight="48dp"
                 android:paddingHorizontal="10dp"
@@ -41,10 +46,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageButton
-                style="@style/Widget.Button.Style"
                 android:id="@+id/send"
-                android:layout_height="wrap_content"
+                style="@style/Widget.Button.Style"
                 android:layout_width="48dp"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_send"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

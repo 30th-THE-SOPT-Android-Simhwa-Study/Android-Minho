@@ -12,7 +12,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
 
         <TextView
             android:id="@+id/content"
@@ -35,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:fontFamily="@font/suit_r"
-            android:text="@{toData.createAt}"
+            android:text="@{toData.createdAt}"
             android:textColor="#888888"
             android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"

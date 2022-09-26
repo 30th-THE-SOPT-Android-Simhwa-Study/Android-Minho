@@ -30,11 +30,11 @@
         <activity
             android:name=".presentation.coroutine.WorkManagerActivity"
             android:exported="true" />
-
+<!--
         <service
             android:name=".MusicPlayerService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true" />-->
 
         <activity
             android:name=".presentation.musicplayer.MusicPlayerActivity"
@@ -66,7 +66,7 @@
             android:name=".presentation.broad.BroadcastPracticeActivity"
             android:enabled="true"
             android:exported="true" />
-
+<!--
         <receiver
             android:name=".SMSReceiver"
             android:enabled="true"
@@ -76,7 +76,7 @@
                 <action android:name="com.sopt.androidstudy" />
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
     </application>
 
 </manifest>
