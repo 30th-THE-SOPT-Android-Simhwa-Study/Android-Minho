@@ -14,11 +14,10 @@ class ChattingViewModel @Inject constructor(
     private val useCase: WhenEnterChattingRoom
 ) :
     ViewModel() {
-
     val chattingList = useCase.getAllChattingList("57")
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000),
-            ApiResult.Idle(null)
+            ApiResult.Idle
         )
 }

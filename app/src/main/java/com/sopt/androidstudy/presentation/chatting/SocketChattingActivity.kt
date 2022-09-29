@@ -2,16 +2,13 @@ package com.sopt.androidstudy.presentation.chatting
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
 import com.sopt.androidstudy.R
 import com.sopt.androidstudy.databinding.ActivitySocketChattingBinding
 import com.sopt.androidstudy.domain.util.ApiResult
 import com.sopt.androidstudy.presentation.base.BaseActivity
 import com.sopt.androidstudy.presentation.mapper.chatting.ChattingListASCMapper
+import com.sopt.androidstudy.presentation.util.collectFlowWhenStarted
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -34,13 +31,17 @@ class SocketChattingActivity :
     }
 
     private fun collectList() {
-        viewModel.chattingList.flowWithLifecycle(lifecycle).onEach {
+        collectFlowWhenStarted(viewModel.chattingList) {
             when (it) {
                 is ApiResult.Idle -> {
                     Timber.e("Init!!!!!")
                 }
                 is ApiResult.Loading -> {
-                    Timber.e("Loading!!!!!!!!")
+                    if (it.isLoading) {
+                        Timber.e("Loading!!!!!!!!")
+                    }else{
+                        Timber.e("Clear Loading!!!!!")
+                    }
                 }
                 is ApiResult.Success -> {
                     Timber.e("Success!!!!!!!!")
@@ -52,8 +53,9 @@ class SocketChattingActivity :
                 is ApiResult.Failure -> {
                     Timber.e("Failure!!!!!!!! ${it.throwable}")
                 }
+                else -> {}
             }
-        }.launchIn(lifecycleScope)
+        }
     }
 
     private fun onBind() {
