@@ -30,7 +30,7 @@ object ServiceModule {
             val request = chain.request().newBuilder().addHeader(
                 "Authorization",
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE0OSIsImVtYWlsIjoibHNoMzI4MzI4QG5hdmVyLmNvbSIsImlhdCI6MTY2MzI0NzUyOCwiZXhwIjoxNjY0NDU3MTI4LCJpc3MiOiJwbGF5dG9nZXRoZXIifQ.M62jThpT65_8tSTW35x8hWrYaT56PJ7rOONSsbwqAK0"
-            ).addHeader("Content-Type", "application/json").build()
+            ).build()
             return chain.proceed(request)
         }
     }
