@@ -16,8 +16,8 @@ class ChattingRepositoyImpl @Inject constructor(
     private val mapper: ChattingMapper
 ) : ChattingRepository {
     override fun getChattingList(roomId: String): Flow<ApiResult<List<ChatEntity>>> = flow {
-        val data = dataSource.getChattingList(roomId)
         emit(ApiResult.Loading(true))
+        val data = dataSource.getChattingList(roomId)
         if (!data.success) {
             emit(ApiResult.Failure(data.message))
         } else if (data.data == null) {

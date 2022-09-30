@@ -63,6 +63,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:2.42"
     kapt "com.google.dagger:hilt-android-compiler:2.42"
 
+    implementation 'dev.gustavoavila:java-android-websocket-client:2.0.1'
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1"
     implementation 'androidx.activity:activity-ktx:1.4.0'

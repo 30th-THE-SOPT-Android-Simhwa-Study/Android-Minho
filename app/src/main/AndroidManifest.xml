@@ -20,12 +20,12 @@
         <activity
             android:name=".presentation.chatting.SocketChattingActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".presentation.coroutine.WorkManagerActivity"
@@ -54,6 +54,7 @@
         <activity
             android:name=".presentation.save.screens.FriendActivity"
             android:exported="true">
+
         </activity>
         <activity
             android:name=".presentation.sign.screens.LoginActivity"

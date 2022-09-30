@@ -46,6 +46,12 @@ class ChattingMultiHolderAdapter :
             )
         }
 
+    fun addChattingMessage(chat: Chat) {
+        val data = currentList.toMutableList()
+        data.add(chat)
+        submitList(data)
+    }
+
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder.itemViewType) {
             FROM -> (holder as FromViewHolder).binding.setVariable(BR.fromData, getItem(position))
@@ -62,7 +68,8 @@ class ChattingMultiHolderAdapter :
     companion object {
         private const val FROM = 1
         private const val TO = 2
-        private object ChatDiffCallBack: DiffUtil.ItemCallback<Chat>(){
+
+        private object ChatDiffCallBack : DiffUtil.ItemCallback<Chat>() {
             override fun areItemsTheSame(oldItem: Chat, newItem: Chat): Boolean {
                 return oldItem.messageId == newItem.messageId
             }

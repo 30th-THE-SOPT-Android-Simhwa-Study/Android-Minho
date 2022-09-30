@@ -1,7 +1,8 @@
-package com.sopt.androidstudy.domain.di
+package com.sopt.androidstudy.di
 
 import com.sopt.androidstudy.data.mappers.ChattingMapper
 import com.sopt.androidstudy.presentation.mapper.chatting.ChattingListASCMapper
+import com.sopt.androidstudy.presentation.mapper.chatting.MessageToChatMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,4 +20,9 @@ object MapperModule {
     @Provides
     @Singleton
     fun provideChattingUIMapper():ChattingListASCMapper = ChattingListASCMapper()
+
+
+    @Provides
+    @Singleton
+    fun provideMessageToChatMapper():MessageToChatMapper = MessageToChatMapper()
 }

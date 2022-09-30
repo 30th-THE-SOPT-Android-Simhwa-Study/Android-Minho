@@ -1,4 +1,4 @@
-package com.sopt.androidstudy.domain.di
+package com.sopt.androidstudy.di
 
 import com.sopt.androidstudy.data.remote.chatting.ChattingService
 import com.sopt.androidstudy.data.remote.github.GithubService
@@ -20,7 +20,7 @@ import javax.inject.Singleton
 object ServiceModule {
 
 
-    private val loggingInterceptor =
+    val loggingInterceptor =
         HttpLoggingInterceptor(HttpLoggingInterceptor.Logger.DEFAULT).apply {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
@@ -29,7 +29,7 @@ object ServiceModule {
         override fun intercept(chain: Interceptor.Chain): Response {
             val request = chain.request().newBuilder().addHeader(
                 "Authorization",
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE0OSIsImVtYWlsIjoibHNoMzI4MzI4QG5hdmVyLmNvbSIsImlhdCI6MTY2MzI0NzUyOCwiZXhwIjoxNjY0NDU3MTI4LCJpc3MiOiJwbGF5dG9nZXRoZXIifQ.M62jThpT65_8tSTW35x8hWrYaT56PJ7rOONSsbwqAK0"
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2OCIsImVtYWlsIjoic2V1bmdoZW9uMzI4QGdtYWlsLmNvbSIsImlhdCI6MTY2NDQ0MDAzNSwiZXhwIjoxNjk1OTk3NjM1LCJpc3MiOiJwbGF5dG9nZXRoZXIifQ.ljT7GMJhM1iKx7G34vVdD_s6AWax0nQHao1Rvne3t6Q"
             ).build()
             return chain.proceed(request)
         }

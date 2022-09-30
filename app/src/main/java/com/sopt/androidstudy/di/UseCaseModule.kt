@@ -1,4 +1,4 @@
-package com.sopt.androidstudy.domain.di
+package com.sopt.androidstudy.di
 
 import com.sopt.androidstudy.domain.usecase.WhenEnterChattingRoom
 import com.sopt.androidstudy.domain.usecase.WhenEnterChattingRoomImpl
