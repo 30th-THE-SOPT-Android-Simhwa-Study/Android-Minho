@@ -14,6 +14,7 @@ import com.sopt.androidstudy.presentation.base.BaseActivity
 import com.sopt.androidstudy.presentation.mapper.chatting.ChattingListASCMapper
 import com.sopt.androidstudy.presentation.mapper.chatting.MessageToChatMapper
 import com.sopt.androidstudy.presentation.model.chating.Chat
+import com.sopt.androidstudy.presentation.state.UiState
 import com.sopt.androidstudy.presentation.util.collectFlowWhenStarted
 import com.sopt.androidstudy.service.Message
 import com.sopt.androidstudy.service.OkHttpWebSocketListener
@@ -51,8 +52,6 @@ class SocketChattingActivity :
     private lateinit var httpSocket: java.net.Socket
     private lateinit var gson: Gson
     private lateinit var uri:URI
-    @Inject
-    lateinit var mapper: ChattingListASCMapper
 
     @Inject
     lateinit var chatMapper: MessageToChatMapper
@@ -240,27 +239,26 @@ class SocketChattingActivity :
     private fun collectList() {
         collectFlowWhenStarted(viewModel.chattingList) {
             when (it) {
-                is ApiResult.Idle -> {
+                is UiState.Idle -> {
                     Timber.e("Init!!!!!")
                 }
-                is ApiResult.Loading -> {
+                is UiState.Loading -> {
                     if (it.isLoading) {
                         Timber.e("Loading!!!!!!!!")
                     } else {
                         Timber.e("Clear Loading!!!!!")
                     }
                 }
-                is ApiResult.Success -> {
+                is UiState.Success -> {
                     Timber.e("Success!!!!!!!!")
                     if (it.datas.isNotEmpty()) {
-                        adapter.submitList(mapper.map(it.datas))
+                        adapter.submitList(it.datas)
                         binding.rcChattingList.smoothScrollToPosition(adapter.itemCount - 1)
                     }
                 }
-                is ApiResult.Empty -> {
-
+                is UiState.Empty -> {
                 }
-                is ApiResult.Failure -> {
+                is UiState.Failure -> {
                     Timber.e("Failure!!!!!!!! ${it.throwable}")
                 }
                 else -> {}

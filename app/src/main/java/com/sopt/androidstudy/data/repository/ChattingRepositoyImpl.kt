@@ -2,6 +2,7 @@ package com.sopt.androidstudy.data.repository
 
 import com.sopt.androidstudy.data.datasources.RemoteChattingDataSource
 import com.sopt.androidstudy.data.mappers.ChattingMapper
+import com.sopt.androidstudy.data.model.chatting.Messages
 import com.sopt.androidstudy.domain.entity.ChatEntity
 import com.sopt.androidstudy.domain.repository.ChattingRepository
 import com.sopt.androidstudy.domain.util.ApiResult
@@ -15,16 +16,12 @@ class ChattingRepositoyImpl @Inject constructor(
     private val dataSource: RemoteChattingDataSource,
     private val mapper: ChattingMapper
 ) : ChattingRepository {
-    override fun getChattingList(roomId: String): Flow<ApiResult<List<ChatEntity>>> = flow {
-        emit(ApiResult.Loading(true))
-        val data = dataSource.getChattingList(roomId)
-        if (!data.success) {
-            emit(ApiResult.Failure(data.message))
-        } else if (data.data == null) {
-            emit(ApiResult.Empty(true))
+    override suspend fun getChattingList(roomId: String): ApiResult<List<ChatEntity>?> {
+        val result = dataSource.getChattingList(roomId)
+        return if (result.isSuccessful) {
+            ApiResult.Success(mapper.map(result.body()?.messages!!))
         } else {
-            emit(ApiResult.Loading(false))
-            emit(ApiResult.Success(mapper.map(data.data.messages)))
+            ApiResult.Failure(result.code().toString())
         }
-    }.flowOn(Dispatchers.IO)
+    }
 }
