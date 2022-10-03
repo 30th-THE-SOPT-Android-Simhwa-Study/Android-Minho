@@ -5,5 +5,5 @@ import com.sopt.androidstudy.domain.util.ApiResult
 import kotlinx.coroutines.flow.Flow
 
 interface WhenEnterChattingRoom {
-    fun getAllChattingList(roomId:String):Flow<ApiResult<List<ChatEntity>>>
+    suspend fun getAllChattingList(roomId:String):Flow<List<ChatEntity>?>
 }
