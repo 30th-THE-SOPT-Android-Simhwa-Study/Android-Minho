@@ -18,19 +18,27 @@
         android:theme="@style/Theme.AndroidSturdy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.chatting.SocketChattingActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
             android:name=".presentation.coroutine.WorkManagerActivity"
             android:exported="true" />
+<!--
         <service
             android:name=".MusicPlayerService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true" />-->
 
         <activity
             android:name=".presentation.musicplayer.MusicPlayerActivity"
             android:exported="false" />
-        <activity
-            android:name=".presentation.coroutine.WorkManagerActivity"
-            android:exported="true" />
         <activity
             android:name=".presentation.save.screens.FriendGithubActivity"
             android:exported="true" />
@@ -45,7 +53,9 @@
             android:exported="false" />
         <activity
             android:name=".presentation.save.screens.FriendActivity"
-            android:exported="true" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".presentation.sign.screens.LoginActivity"
             android:exported="true"
@@ -54,26 +64,20 @@
             android:name=".presentation.home.screens.MainActivity"
             android:exported="false" />
         <activity
-            android:enabled="true"
             android:name=".presentation.broad.BroadcastPracticeActivity"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <receiver android:name=".SMSReceiver"
+            android:enabled="true"
+            android:exported="true" />
+<!--
+        <receiver
+            android:name=".SMSReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="android.permission.RECEIVE_SMS">
             <intent-filter>
-                <action android:name="com.sopt.androidstudy"/>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+                <action android:name="com.sopt.androidstudy" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
-        </receiver>
-
+        </receiver>-->
     </application>
 
 </manifest>

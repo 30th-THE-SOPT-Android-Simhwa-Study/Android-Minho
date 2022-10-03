@@ -28,24 +28,24 @@ class FriendGithubViewModel : ViewModel() {
         _selectUser.value = data
     }
 
-    val getUserData: StateFlow<ResponseUser?> = flow {
-        if (!userName.value.isNullOrBlank()) {
-            val responseUser = withContext(Dispatchers.IO) {
-                ServiceCreator.githubService.getUser(
-                    "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",
-                    userName.value.toString()
-                )
-            }.body()
-            if (responseUser != null) {
-                emit(responseUser)
-                userData()
-            }
-            Log.d("user : emit!!", responseUser.toString())
+    /* val getUserData: StateFlow<ResponseUser?> = flow {
+         if (!userName.value.isNullOrBlank()) {
+             val responseUser = withContext(Dispatchers.IO) {
+                 ServiceCreator.githubService.getUser(
+                     "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",
+                     userName.value.toString()
+                 )
+             }.body()
+             if (responseUser != null) {
+                 emit(responseUser)
+                 userData()
+             }
+             Log.d("user : emit!!", responseUser.toString())
         }
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)*/
 
-    fun userData(): String? = getUserData.value?.avatar_url
-    /*val getRepository: StateFlow<List<ResponseRepo>?> = flow {
+    /*fun userData(): String? = getUserData.value?.avatar_url
+    val getRepository: StateFlow<List<ResponseRepo>?> = flow {
         if (!userName.value.isNullOrBlank()) {
             val responseRepository = withContext(Dispatchers.IO) {
                 ServiceCreator.githubService.getRepository(
@@ -60,7 +60,7 @@ class FriendGithubViewModel : ViewModel() {
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)*/
 
-    val getFollower: StateFlow<List<ResponseFollowing>?> = flow {
+    /*val getFollower: StateFlow<List<ResponseFollowing>?> = flow {
         if (!userName.value.isNullOrBlank()) {
             val responseFollowing =
                 ServiceCreator.githubService.getFollowing(
@@ -71,5 +71,5 @@ class FriendGithubViewModel : ViewModel() {
                 emit(responseFollowing.body())
             }
         }
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)*/
 }

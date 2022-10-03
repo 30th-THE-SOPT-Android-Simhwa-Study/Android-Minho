@@ -64,10 +64,10 @@ class FriendGithubActivity : AppCompatActivity() {
             friendGithubViewModel.setUserName(user)
             lifecycleScope.launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    friendGithubViewModel.getUserData.collect {
+                    /*friendGithubViewModel.getUserData.collect {
                         Log.d("Collect!!", it.toString())
                         binding.user = it
-                    }
+                    }*/
                 }
             }
         }
@@ -128,7 +128,7 @@ class FriendGithubActivity : AppCompatActivity() {
             when (msg.what) {
                 COUNT_WHAT -> {
                     val count = bundle.getInt("count")
-                    binding.mbti.text = count.toString()
+                    binding.count.text = count.toString()
                 }
                 IMAGE_WHAT -> {
                     val stringBitmap = bundle.getString("bitmap") ?: return
