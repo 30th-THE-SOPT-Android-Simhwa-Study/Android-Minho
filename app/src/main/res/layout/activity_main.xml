@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.slidingpanelayout.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="mainViewModel"
-            type="com.sopt.androidstudy.presentation.home.viewmodels.MyViewModel" />
-    </data>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.home.screens.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="400dp"
+        android:layout_gravity="start"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_main"
+            android:id="@+id/rv_test"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_test"
+            android:background="@color/teal_200"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_event_list" />
-
+            tools:itemCount="10" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="com.sopt.androidstudy.presentation.home.screens.TestFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+</androidx.slidingpanelayout.widget.SlidingPaneLayout>
