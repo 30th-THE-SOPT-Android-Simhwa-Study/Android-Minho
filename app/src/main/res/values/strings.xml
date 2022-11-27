@@ -73,4 +73,7 @@
     <string name="enfp1">표정 밝음</string>
     <string name="enfp2">통찰력 있음</string>
     <string name="enfp3">언어표현 잘함</string>
+    <string name="title_activity_component">ComponentActivity</string>
+    <string name="compose_empty">앗, 일정이 없어요!\n일정을 등록하고 알림을 받아보세요!</string>
+    <string name="year_of_month">%s %s</string>
 </resources>
