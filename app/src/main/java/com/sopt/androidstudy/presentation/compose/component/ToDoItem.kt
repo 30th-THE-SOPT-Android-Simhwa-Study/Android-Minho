@@ -29,7 +29,7 @@ fun ToDoItem(toDoTask: ToDoTask) {
                     .padding(16.dp, 0.dp, 0.dp, 0.dp)
                     .weight(1F)
             ) {
-                Text(text = toDoTask.type.info, color = Color.Black)
+                Text(text = toDoTask.type.info, color = toDoTask.type.color)
                 Text(text = toDoTask.content, color = Color.Black)
                 Text(
                     text = (if (toDoTask.time.hour / 12 == 1) "오후 " + toDoTask.time.hour % 12 + "시" else "오전 " + toDoTask.time.hour + "시").toString(),
