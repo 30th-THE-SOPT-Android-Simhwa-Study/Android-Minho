@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun CalendarControllButton(text: String, onClick: () -> Unit) {
+fun CalendarControlButton(text: String, onClick: () -> Unit) {
     Text(
         text = text,
         fontSize = 20.sp,

@@ -37,7 +37,7 @@ fun AnshimCalendarScreen(toDoList: StateFlow<List<ToDoTask>>) {
                         .padding(0.dp, 12.dp, 0.dp, 20.dp)
                         .fillMaxWidth()
                 ) {
-                    CalendarControllButton(
+                    CalendarControlButton(
                         text = "이전",
                         onClick = {
                             currentMonth.value =
@@ -52,7 +52,7 @@ fun AnshimCalendarScreen(toDoList: StateFlow<List<ToDoTask>>) {
                         fontSize = 20.sp,
                         color = Color.Black,
                     )
-                    CalendarControllButton(
+                    CalendarControlButton(
                         text = "다음",
                         onClick = {
                             currentMonth.value =
