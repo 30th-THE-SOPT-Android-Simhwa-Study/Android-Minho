@@ -23,7 +23,6 @@ import com.sopt.androidstudy.presentation.compose.component.AnshimDayOfTodoList
 import com.sopt.androidstudy.presentation.compose.model.ToDoTask
 import com.sopt.androidstudy.presentation.compose.model.ToDoType
 import com.sopt.androidstudy.presentation.compose.theme.AndroidSturdyTheme
-import timber.log.Timber
 import java.time.LocalDateTime
 
 class ComponentActivity : ComponentActivity() {
@@ -185,7 +184,6 @@ AnshimCalendar(
                             onClick = { selectDate.value = it?.dayOfYear }
                         )
                         if (selectDate.value != null) {
-                            Timber.e(selectDate.value.toString())
                             AnshimDayOfTodoList(
                                 toDoList.filter { it.time.dayOfYear == selectDate.value }
                             )
