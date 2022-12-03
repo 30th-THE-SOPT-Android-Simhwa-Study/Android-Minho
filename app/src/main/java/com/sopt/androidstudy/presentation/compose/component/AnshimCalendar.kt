@@ -8,8 +8,10 @@ import java.time.LocalDateTime
 
 @Composable
 fun AnshimCalendar(
-    toDoTaskList: List<Int>, currentMonth: Int,
-    selectValue: Int?, onClick: (LocalDateTime?) -> Unit
+      toDoTaskList: List<Int>,
+    currentMonth: Int,
+    selectValue: Int?,
+    onClick: (LocalDateTime?) -> Unit
 ) {
     var day = LocalDateTime.of(2022, currentMonth, 1, 0, 0, 0).withDayOfMonth(1)
     val startDay =
