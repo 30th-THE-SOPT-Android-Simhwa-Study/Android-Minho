@@ -152,7 +152,7 @@ class ComponentActivity : ComponentActivity() {
                                     .padding(10.dp)
                                     .clickable {
                                         selectDate.value = null
-                                        currentMonth.value = currentMonth.value.dec()
+                           currentMonth.value = currentMonth.value.dec().takeIf { it >= 1 } ?: currentMonth.value
                                     }
                             )
                             Text(
