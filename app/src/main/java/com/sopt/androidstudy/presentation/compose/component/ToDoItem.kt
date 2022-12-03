@@ -26,7 +26,7 @@ fun ToDoItem(toDoTask: ToDoTask) {
             Column(
                 horizontalAlignment = Alignment.Start,
                 modifier = Modifier
-                    .padding(16.dp, 0.dp, 0.dp, 0.dp)
+                    .padding( start = 16.dp)
                     .weight(1F)
             ) {
                 Text(text = toDoTask.type.info, color = toDoTask.type.color)
