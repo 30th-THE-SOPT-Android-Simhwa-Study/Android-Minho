@@ -4,12 +4,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
+import com.sopt.androidstudy.presentation.compose.model.ToDoTask
 import timber.log.Timber
 import java.time.LocalDateTime
 
 @Composable
 fun AnshimCalendar(
-    toDoTaskList: List<Int>,
+    toDoTaskList: List<ToDoTask>,
     currentMonth: Int,
     selectValue: Int?,
     onClick: (LocalDateTime?) -> Unit
@@ -25,13 +26,14 @@ fun AnshimCalendar(
                 repeat(7) { row ->
                     if (column == 0 && startDay > row) {
                         LabelText(
-                            toDoTask = false,
+                            typeOfList = null,
                             date = null,
-                            false,
-                            onClickLabel = { onClick(null) })
+                            isSelected = false
+                        ) { onClick(null) }
                     } else {
                         LabelText(
-                            toDoTask = toDoTaskList.contains(day.dayOfYear),
+                            typeOfList = toDoTaskList.filter { it.time.dayOfYear == day.dayOfYear }
+                                .map { it.type }.toSet(),
                             date = day, isSelected = selectValue == day.dayOfYear
                         ) { day ->
                             onClick(day)

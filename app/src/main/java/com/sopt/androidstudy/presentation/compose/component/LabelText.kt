@@ -1,11 +1,12 @@
 package com.sopt.androidstudy.presentation.compose.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,11 +18,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.sopt.androidstudy.R
+import com.sopt.androidstudy.presentation.compose.model.ToDoType
 import java.time.LocalDateTime
 
 @Composable
 fun LabelText(
-    toDoTask: Boolean,
+    typeOfList: Set<ToDoType>?,
     date: LocalDateTime?,
     isSelected: Boolean,
     onClickLabel: (LocalDateTime?) -> Unit
@@ -40,11 +42,16 @@ fun LabelText(
             color = Color.Black,
             fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Light
         )
-        if (toDoTask) {
-            Image(
-                painter = painterResource(id = R.drawable.ic_dot), contentDescription = null,
-                modifier = Modifier.size(10.dp)
-            )
+        Row() {
+            typeOfList?.forEach { type ->
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_dot), contentDescription = null,
+                    modifier = Modifier
+                        .size(10.dp),
+                    tint = type.color
+                )
+            }
         }
+
     }
 }

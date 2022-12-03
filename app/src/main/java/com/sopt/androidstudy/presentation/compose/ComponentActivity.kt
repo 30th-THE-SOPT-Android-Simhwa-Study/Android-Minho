@@ -151,7 +151,11 @@ class ComponentActivity : ComponentActivity() {
                                     .padding(10.dp)
                                     .clickable {
                                         selectDate.value = null
-                           currentMonth.value = currentMonth.value.dec().takeIf { it >= 1 } ?: currentMonth.value
+                                        currentMonth.value =
+                                            currentMonth.value
+                                                .dec()
+                                                .takeIf { it >= 1 }
+                                                ?: currentMonth.value
                                     }
                             )
                             Text(
@@ -172,17 +176,19 @@ class ComponentActivity : ComponentActivity() {
                                     .padding(10.dp)
                                     .clickable {
                                         selectDate.value = null
-currentMonth.value = currentMonth.value.inc().takeIf { it <= 12 } ?: currentMonth.value
+                                        currentMonth.value =
+                                            currentMonth.value
+                                                .inc()
+                                                .takeIf { it <= 12 }
+                                                ?: currentMonth.value
                                     }
                             )
                         }
-AnshimCalendar(
-                            toDoTaskList = toDoList.filter { it.time.month.value == currentMonth.value }
-                                .map { it.time.dayOfYear },
+                        AnshimCalendar(
+                            toDoTaskList = toDoList.filter { it.time.month.value == currentMonth.value },
                             currentMonth = currentMonth.value,
-                            selectValue = selectDate.value,
-                            onClick = { selectDate.value = it?.dayOfYear }
-                        )
+                            selectValue = selectDate.value
+                        ) { selectDate.value = it?.dayOfYear }
                         if (selectDate.value != null) {
                             AnshimDayOfTodoList(
                                 toDoList.filter { it.time.dayOfYear == selectDate.value }
