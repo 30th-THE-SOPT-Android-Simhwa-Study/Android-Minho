@@ -177,10 +177,13 @@ class ComponentActivity : ComponentActivity() {
                                     }
                             )
                         }
-                        AnshimCalendar(toDoList.filter { it.time.month.value == currentMonth.value }
-                            .map { it.time.dayOfYear },  currentMonth.value,selectDate.value) {
-                            selectDate.value = it?.dayOfYear
-                        }
+AnshimCalendar(
+                            toDoTaskList = toDoList.filter { it.time.month.value == currentMonth.value }
+                                .map { it.time.dayOfYear },
+                            currentMonth = currentMonth.value,
+                            selectValue = selectDate.value,
+                            onClick = { selectDate.value = it?.dayOfYear }
+                        )
                         if (selectDate.value != null) {
                             Timber.e(selectDate.value.toString())
                             AnshimDayOfTodoList(
