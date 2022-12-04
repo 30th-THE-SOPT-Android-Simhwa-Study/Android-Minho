@@ -1,5 +1,6 @@
 package com.sopt.androidstudy.presentation.compose.component
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -17,10 +18,11 @@ fun AnshimDayOfTodoList(
 ) {
     Surface(
         color = MaterialTheme.colors.primary,
-        modifier = Modifier.padding(vertical = 4.dp, horizontal = 8.dp)
+        modifier = Modifier
+            .padding(horizontal = 8.dp)
     ) {
         Column() {
-            LazyColumn(modifier = Modifier.padding(4.dp)) {
+            LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 items(items = itemList) { data ->
                     ToDoItem(data)
                 }
