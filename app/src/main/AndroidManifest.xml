@@ -18,19 +18,30 @@
         android:theme="@style/Theme.AndroidSturdy"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.compose.ComponentActivity"
+            android:exported="true"
+            android:label="@string/title_activity_component"
+            android:theme="@style/Theme.AndroidSturdy">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".presentation.chatting.SocketChattingActivity"
             android:exported="true">
-
         </activity>
         <activity
             android:name=".presentation.coroutine.WorkManagerActivity"
             android:exported="true" />
         <!--
-                <service
-                    android:name=".MusicPlayerService"
-                    android:enabled="true"
-                    android:exported="true" />-->
-
+        <service
+            android:name=".MusicPlayerService"
+            android:enabled="true"
+            android:exported="true" />
+        -->
         <activity
             android:name=".presentation.musicplayer.MusicPlayerActivity"
             android:exported="false" />
@@ -54,9 +65,7 @@
             android:exported="false" />
         <activity
             android:name=".presentation.save.screens.FriendActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.sign.screens.LoginActivity"
             android:exported="true"
