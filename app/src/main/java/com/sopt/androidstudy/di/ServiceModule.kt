@@ -2,6 +2,9 @@ package com.sopt.androidstudy.di
 
 import com.sopt.androidstudy.data.remote.chatting.ChattingService
 import com.sopt.androidstudy.data.remote.github.GithubService
+import com.sopt.androidstudy.data.remote.lotto.LottoService
+import com.sopt.androidstudy.data.remote.lotto.LottoServiceImpl
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -64,4 +67,8 @@ object ServiceModule {
     @Singleton
     fun provideChattingService(retrofit: Retrofit): ChattingService =
         retrofit.create(ChattingService::class.java)
+
+    @Provides
+    @Singleton
+    fun bindsToLottoService():LottoService = LottoServiceImpl()
 }
