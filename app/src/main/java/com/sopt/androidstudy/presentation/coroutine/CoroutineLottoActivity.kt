@@ -1,21 +1,25 @@
 package com.sopt.androidstudy.presentation.coroutine
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.sopt.androidstudy.databinding.ActivityCoroutineLottoBinding
-import java.net.URL
+import com.sopt.androidstudy.domain.util.ApiResult
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
-import com.google.gson.JsonParser
-import kotlinx.coroutines.*
-import kotlin.collections.ArrayList
 import kotlin.random.Random
 
+@AndroidEntryPoint
 class CoroutineLottoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCoroutineLottoBinding
-    private val job = Job()
+    var job: Job? = null
+    private val coroutineViewModel: CoroutineViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCoroutineLottoBinding.inflate(layoutInflater)
@@ -23,9 +27,16 @@ class CoroutineLottoActivity : AppCompatActivity() {
         binding.generatebutton.setOnClickListener {
             val myNumber = createLottoNumbers()
             updateLottoBallImage(myNumber)
-            CoroutineScope(Dispatchers.Main + job).launch {
-                val data = getLottoNumbers()
-                binding.tvWinning.text = "${myNumber} + ${myLottoRank(myNumber, data)}"
+            job = CoroutineScope(Dispatchers.Main.immediate).launch {
+                when (val data = coroutineViewModel.lottoNum.await()) {
+                    is ApiResult.Success -> {
+                        binding.tvWinning.text =
+                            "$myNumber + ${myLottoRank(myNumber, data.datas)}"
+                    }
+                    is ApiResult.Failure -> {
+                        Timber.e(data.throwable)
+                    }
+                }
             }
         }
     }
@@ -49,7 +60,7 @@ class CoroutineLottoActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        job.cancel()
+        job?.cancel()
     }
 
     private fun createLottoNumbers(): ArrayList<Int> {
@@ -83,31 +94,4 @@ class CoroutineLottoActivity : AppCompatActivity() {
             ivGame5.setImageResource(getDrawableID(result[5]))
         }
     }
-
-    private suspend fun getLottoNumbers(): ArrayList<Int> {
-        val round = "1000"
-        val url = "https://dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=$round"
-        val lottoNumbers = ArrayList<Int>()
-        try {
-            withContext(Dispatchers.IO) {
-                val response = URL(url).readText()
-                val jsonObject = JsonParser.parseString(response).asJsonObject
-                val returnValue = jsonObject.get("returnValue").asString
-                if (returnValue == "success") {
-                    for (i in 1..6) {
-                        val lottoNumber = jsonObject.get("drwtNo$i").asInt
-                        lottoNumbers.add(lottoNumber)
-                    }
-                    val bonusNumber = jsonObject.get("bnusNo").asInt
-                    lottoNumbers.add(bonusNumber)
-                    lottoNumbers.add(round.toInt())
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
-        return lottoNumbers
-    }
-
 }
